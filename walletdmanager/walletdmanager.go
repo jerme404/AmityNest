@@ -1,4 +1,5 @@
 // Copyright (c) 2018, The TurtleCoin Developers
+// Copyright (c) 2018, The Calex Developers
 //
 // Please see the included LICENSE file for more information.
 //
@@ -7,7 +8,7 @@
 package walletdmanager
 
 import (
-	"TurtleCoin-Nest/turtlecoinwalletdrpcgo"
+	"AmityCoin-Nest/amitycoinwalletdrpcgo"
 	"bufio"
 	"io"
 	"math/rand"
@@ -35,13 +36,13 @@ var (
 	// WalletFilename is the filename of the opened wallet
 	WalletFilename = ""
 
-	// will be set to a random string when starting turtle-service
+	// will be set to a random string when starting amity-service
 	rpcPassword = ""
 
 	cmdWalletd     *exec.Cmd
-	cmdTurtleCoind *exec.Cmd
+	cmdAmityCoind *exec.Cmd
 
-	// WalletdOpenAndRunning is true when turtle-service is running with a wallet open
+	// WalletdOpenAndRunning is true when amity-service is running with a wallet open
 	WalletdOpenAndRunning = false
 
 	// WalletdSynced is true when wallet is synced and transfer is allowed
@@ -78,7 +79,7 @@ func Setup(platform string) {
 // RequestBalance provides the available and locked balances of the current wallet
 func RequestBalance() (availableBalance float64, lockedBalance float64, totalBalance float64, err error) {
 
-	availableBalance, lockedBalance, totalBalance, err = turtlecoinwalletdrpcgo.RequestBalance(rpcPassword)
+	availableBalance, lockedBalance, totalBalance, err = amitycoinwalletdrpcgo.RequestBalance(rpcPassword)
 	if err != nil {
 		log.Error("error requesting balances. err: ", err)
 	} else {
@@ -95,7 +96,7 @@ func RequestAvailableBalanceToBeSpent(transferFeeString string) (availableBalanc
 		return 0, err
 	}
 
-	transferFee, err := strconv.ParseFloat(transferFeeString, 64) // transferFee is expressed in TRTL
+	transferFee, err := strconv.ParseFloat(transferFeeString, 64) // transferFee is expressed in AMIT
 	if err != nil {
 		return 0, errors.New("fee is invalid")
 	}
@@ -115,7 +116,7 @@ func RequestAvailableBalanceToBeSpent(transferFeeString string) (availableBalanc
 // RequestAddress provides the address of the current wallet
 func RequestAddress() (address string, err error) {
 
-	address, err = turtlecoinwalletdrpcgo.RequestAddress(rpcPassword)
+	address, err = amitycoinwalletdrpcgo.RequestAddress(rpcPassword)
 	if err != nil {
 		log.Error("error requesting address. err: ", err)
 	} else {
@@ -125,15 +126,15 @@ func RequestAddress() (address string, err error) {
 }
 
 // RequestListTransactions provides the list of transactions of current wallet
-func RequestListTransactions() (transfers []turtlecoinwalletdrpcgo.Transfer, err error) {
+func RequestListTransactions() (transfers []amitycoinwalletdrpcgo.Transfer, err error) {
 
-	walletBlockCount, _, _, _, err := turtlecoinwalletdrpcgo.RequestStatus(rpcPassword)
+	walletBlockCount, _, _, _, err := amitycoinwalletdrpcgo.RequestStatus(rpcPassword)
 	if err != nil {
 		log.Error("error getting block count: ", err)
 		return nil, err
 	}
 
-	transfers, err = turtlecoinwalletdrpcgo.RequestListTransactions(walletBlockCount, 1, []string{WalletAddress}, rpcPassword)
+	transfers, err = amitycoinwalletdrpcgo.RequestListTransactions(walletBlockCount, 1, []string{WalletAddress}, rpcPassword)
 	if err != nil {
 		log.Error("error requesting list transactions. err: ", err)
 	}
@@ -147,7 +148,7 @@ func SendTransaction(transferAddress string, transferAmountString string, transf
 		return "", errors.New("wallet and/or blockchain not fully synced yet")
 	}
 
-	if !strings.HasPrefix(transferAddress, "TRTL") || (len(transferAddress) != 99 && len(transferAddress) != 187) {
+	if !strings.HasPrefix(transferAddress, "AMIT") || (len(transferAddress) != 99 && len(transferAddress) != 187) {
 		return "", errors.New("address is invalid")
 	}
 
@@ -155,16 +156,16 @@ func SendTransaction(transferAddress string, transferAmountString string, transf
 		return "", errors.New("sending to yourself is not supported")
 	}
 
-	transferAmount, err := strconv.ParseFloat(transferAmountString, 64) // transferAmount is expressed in TRTL
+	transferAmount, err := strconv.ParseFloat(transferAmountString, 64) // transferAmount is expressed in AMIT
 	if err != nil {
 		return "", errors.New("amount is invalid")
 	}
 
 	if transferAmount <= 0 {
-		return "", errors.New("amount of TRTL to be sent should be greater than 0")
+		return "", errors.New("amount of AMIT to be sent should be greater than 0")
 	}
 
-	transferFee, err := strconv.ParseFloat(transferFeeString, 64) // transferFee is expressed in TRTL
+	transferFee, err := strconv.ParseFloat(transferFeeString, 64) // transferFee is expressed in AMIT
 	if err != nil {
 		return "", errors.New("fee is invalid")
 	}
@@ -177,7 +178,7 @@ func SendTransaction(transferAddress string, transferAmountString string, transf
 		return "", errors.New("your available balance is insufficient")
 	}
 
-	transactionHash, err = turtlecoinwalletdrpcgo.SendTransaction(transferAddress, transferAmount, transferPaymentID, transferFee, rpcPassword)
+	transactionHash, err = amitycoinwalletdrpcgo.SendTransaction(transferAddress, transferAmount, transferPaymentID, transferFee, rpcPassword)
 	if err != nil {
 		log.Error("error sending transaction. err: ", err)
 		return "", err
@@ -193,7 +194,7 @@ func OptimizeWalletWithFusion() (transactionHash string, err error) {
 		return "", errors.Wrap(err, "getOptimisedFusionParameters failed")
 	}
 
-	transactionHash, err = turtlecoinwalletdrpcgo.SendFusionTransaction(smallestOptimizedThreshold, []string{WalletAddress}, WalletAddress, rpcPassword)
+	transactionHash, err = amitycoinwalletdrpcgo.SendFusionTransaction(smallestOptimizedThreshold, []string{WalletAddress}, WalletAddress, rpcPassword)
 	if err != nil {
 		log.Error("error sending fusion transaction. err: ", err)
 		return "", errors.Wrap(err, "sending fusion transaction failed")
@@ -210,7 +211,7 @@ func getOptimisedFusionParameters() (largestFusionReadyCount int, smallestOptimi
 	smallestOptimizedThreshold = threshold
 
 	for {
-		fusionReadyCount, _, err := turtlecoinwalletdrpcgo.EstimateFusion(threshold, []string{WalletAddress}, rpcPassword)
+		fusionReadyCount, _, err := amitycoinwalletdrpcgo.EstimateFusion(threshold, []string{WalletAddress}, rpcPassword)
 		if err != nil {
 			log.Error("error estimating fusion. err: ", err)
 			return 0, 0, err
@@ -231,19 +232,19 @@ func getOptimisedFusionParameters() (largestFusionReadyCount int, smallestOptimi
 // GetPrivateKeys provides the private view and spend keys of the current wallet, and the mnemonic seed if the wallet is deterministic
 func GetPrivateKeys() (isDeterministicWallet bool, mnemonicSeed string, privateViewKey string, privateSpendKey string, err error) {
 
-	isDeterministicWallet, mnemonicSeed, err = turtlecoinwalletdrpcgo.GetMnemonicSeed(WalletAddress, rpcPassword)
+	isDeterministicWallet, mnemonicSeed, err = amitycoinwalletdrpcgo.GetMnemonicSeed(WalletAddress, rpcPassword)
 	if err != nil {
 		log.Error("error requesting mnemonic seed. err: ", err)
 		return false, "", "", "", err
 	}
 
-	privateViewKey, err = turtlecoinwalletdrpcgo.GetViewKey(rpcPassword)
+	privateViewKey, err = amitycoinwalletdrpcgo.GetViewKey(rpcPassword)
 	if err != nil {
 		log.Error("error requesting view key. err: ", err)
 		return false, "", "", "", err
 	}
 
-	privateSpendKey, _, err = turtlecoinwalletdrpcgo.GetSpendKeys(WalletAddress, rpcPassword)
+	privateSpendKey, _, err = amitycoinwalletdrpcgo.GetSpendKeys(WalletAddress, rpcPassword)
 	if err != nil {
 		log.Error("error requesting spend keys. err: ", err)
 		return false, "", "", "", err
@@ -252,10 +253,10 @@ func GetPrivateKeys() (isDeterministicWallet bool, mnemonicSeed string, privateV
 	return isDeterministicWallet, mnemonicSeed, privateViewKey, privateSpendKey, nil
 }
 
-// SaveWallet saves the sync status of the wallet. To be done regularly so when turtle-service crashes, sync is not lost
+// SaveWallet saves the sync status of the wallet. To be done regularly so when amity-service crashes, sync is not lost
 func SaveWallet() (err error) {
 
-	err = turtlecoinwalletdrpcgo.SaveWallet(rpcPassword)
+	err = amitycoinwalletdrpcgo.SaveWallet(rpcPassword)
 	if err != nil {
 		log.Error("error saving wallet. err: ", err)
 		return err
@@ -264,15 +265,15 @@ func SaveWallet() (err error) {
 	return nil
 }
 
-// StartWalletd starts the turtle-service daemon with the set wallet info
+// StartWalletd starts the amity-service daemon with the set wallet info
 // walletPath is the full path to the wallet
 // walletPassword is the wallet password
 // useRemoteNode is true if remote node, false if local
-// useCheckpoints is true if TurtleCoind should be run with "--load-checkpoints"
+// useCheckpoints is true if AmityCoind should be run with "--load-checkpoints"
 func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, useCheckpoints bool, daemonAddress string, daemonPort string) (err error) {
 
 	if isWalletdRunning() {
-		errorMessage := "turtle-service is already running in the background.\nPlease close it via "
+		errorMessage := "amity-service is already running in the background.\nPlease close it via "
 
 		if isPlatformWindows {
 			errorMessage += "the task manager"
@@ -296,11 +297,11 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 
 	pathToLogWalletdCurrentSession := logsFolder + directorySeparator + logWalletdCurrentSessionFilename
 	pathToLogWalletdAllSessions := logsFolder + directorySeparator + logWalletdAllSessionsFilename
-	pathToLogTurtleCoindCurrentSession := logsFolder + directorySeparator + logTurtleCoindCurrentSessionFilename
-	pathToLogTurtleCoindAllSessions := logsFolder + directorySeparator + logTurtleCoindAllSessionsFilename
+	pathToLogAmityCoindCurrentSession := logsFolder + directorySeparator + logAmityCoindCurrentSessionFilename
+	pathToLogAmityCoindAllSessions := logsFolder + directorySeparator + logAmityCoindAllSessionsFilename
 
 	pathToWalletd := "./" + walletdCommandName
-	pathToTurtleCoind := "./" + turtlecoindCommandName
+	pathToAmityCoind := "./" + amitycoindCommandName
 	checkpointsCSVFile := "checkpoints.csv"
 	pathToCheckpointsCSV := "./" + checkpointsCSVFile
 
@@ -321,7 +322,7 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 	if isPlatformDarwin {
 		pathToAppContents := filepath.Dir(pathToAppDirectory)
 		pathToWalletd = pathToAppContents + "/" + walletdCommandName
-		pathToTurtleCoind = pathToAppContents + "/" + turtlecoindCommandName
+		pathToAmityCoind = pathToAppContents + "/" + amitycoindCommandName
 		pathToCheckpointsCSV = pathToAppContents + "/" + checkpointsCSVFile
 
 		usr, err := user.Current()
@@ -329,12 +330,12 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 			log.Fatal("error finding home directory. Error: ", err)
 		}
 		pathToHomeDir := usr.HomeDir
-		pathToAppLibDir := pathToHomeDir + "/Library/Application Support/TurtleCoin-Nest"
+		pathToAppLibDir := pathToHomeDir + "/Library/Application Support/AmityCoin-Nest"
 
 		pathToLogWalletdCurrentSession = pathToAppLibDir + "/" + pathToLogWalletdCurrentSession
 		pathToLogWalletdAllSessions = pathToAppLibDir + "/" + pathToLogWalletdAllSessions
-		pathToLogTurtleCoindCurrentSession = pathToAppLibDir + "/" + pathToLogTurtleCoindCurrentSession
-		pathToLogTurtleCoindAllSessions = pathToAppLibDir + "/" + pathToLogTurtleCoindAllSessions
+		pathToLogAmityCoindCurrentSession = pathToAppLibDir + "/" + pathToLogAmityCoindCurrentSession
+		pathToLogAmityCoindAllSessions = pathToAppLibDir + "/" + pathToLogAmityCoindAllSessions
 
 		if pathToWallet == WalletFilename {
 			// if comes from createWallet, so it is not a full path, just a filename
@@ -342,12 +343,12 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 		}
 	} else if isPlatformLinux {
 		pathToWalletd = pathToAppDirectory + "/" + walletdCommandName
-		pathToTurtleCoind = pathToAppDirectory + "/" + turtlecoindCommandName
+		pathToAmityCoind = pathToAppDirectory + "/" + amitycoindCommandName
 		pathToCheckpointsCSV = pathToAppDirectory + "/" + checkpointsCSVFile
 		pathToLogWalletdCurrentSession = pathToAppDirectory + "/" + pathToLogWalletdCurrentSession
 		pathToLogWalletdAllSessions = pathToAppDirectory + "/" + pathToLogWalletdAllSessions
-		pathToLogTurtleCoindCurrentSession = pathToAppDirectory + "/" + pathToLogTurtleCoindCurrentSession
-		pathToLogTurtleCoindAllSessions = pathToAppDirectory + "/" + pathToLogTurtleCoindAllSessions
+		pathToLogAmityCoindCurrentSession = pathToAppDirectory + "/" + pathToLogAmityCoindCurrentSession
+		pathToLogAmityCoindAllSessions = pathToAppDirectory + "/" + pathToLogAmityCoindAllSessions
 		if pathToWallet == WalletFilename {
 			// if comes from createWallet, so it is not a full path, just a filename
 			pathToWallet = pathToAppDirectory + "/" + pathToWallet
@@ -363,7 +364,7 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 
 	rpcPassword = randStringBytesMaskImprSrc(20)
 
-	var turtleCoindCurrentSessionLogFile *os.File
+	var amityCoindCurrentSessionLogFile *os.File
 
 	if useRemoteNode {
 		cmdWalletd = exec.Command(pathToWalletd, "-w", pathToWallet, "-p", walletPassword, "-l", pathToLogWalletdCurrentSession, "--daemon-address", daemonAddress, "--daemon-port", daemonPort, "--log-level", walletdLogLevel, "--rpc-password", rpcPassword)
@@ -372,54 +373,54 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 	}
 	hideCmdWindowIfNeeded(cmdWalletd)
 
-	if !useRemoteNode && !isTurtleCoindRunning() {
+	if !useRemoteNode && !isAmityCoindRunning() {
 
-		turtleCoindCurrentSessionLogFile, err = os.Create(pathToLogTurtleCoindCurrentSession)
+		amityCoindCurrentSessionLogFile, err = os.Create(pathToLogAmityCoindCurrentSession)
 		if err != nil {
 			log.Error(err)
 		}
-		defer turtleCoindCurrentSessionLogFile.Close()
+		defer amityCoindCurrentSessionLogFile.Close()
 
 		if useCheckpoints {
-			cmdTurtleCoind = exec.Command(pathToTurtleCoind, "--load-checkpoints", pathToCheckpointsCSV, "--log-file", pathToLogTurtleCoindCurrentSession)
+			cmdAmityCoind = exec.Command(pathToAmityCoind, "--load-checkpoints", pathToCheckpointsCSV, "--log-file", pathToLogAmityCoindCurrentSession)
 		} else {
-			cmdTurtleCoind = exec.Command(pathToTurtleCoind, "--log-file", pathToLogTurtleCoindCurrentSession)
+			cmdAmityCoind = exec.Command(pathToAmityCoind, "--log-file", pathToLogAmityCoindCurrentSession)
 		}
-		hideCmdWindowIfNeeded(cmdTurtleCoind)
+		hideCmdWindowIfNeeded(cmdAmityCoind)
 
-		turtleCoindAllSessionsLogFile, err := os.OpenFile(pathToLogTurtleCoindAllSessions, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+		amityCoindAllSessionsLogFile, err := os.OpenFile(pathToLogAmityCoindAllSessions, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
 		if err != nil {
 			log.Error(err)
 		}
-		cmdTurtleCoind.Stdout = turtleCoindAllSessionsLogFile
-		defer turtleCoindAllSessionsLogFile.Close()
+		cmdAmityCoind.Stdout = amityCoindAllSessionsLogFile
+		defer amityCoindAllSessionsLogFile.Close()
 
-		err = cmdTurtleCoind.Start()
+		err = cmdAmityCoind.Start()
 		if err != nil {
 			log.Error(err)
 			return err
 		}
 
-		log.Info("Opening TurtleCoind and waiting for it to be ready.")
+		log.Info("Opening AmityCoind and waiting for it to be ready.")
 
-		readerTurtleCoindLog := bufio.NewReader(turtleCoindCurrentSessionLogFile)
+		readerAmityCoindLog := bufio.NewReader(amityCoindCurrentSessionLogFile)
 
 		for {
-			line, err := readerTurtleCoindLog.ReadString('\n')
+			line, err := readerAmiytCoindLog.ReadString('\n')
 			if err != nil {
 				if err != io.EOF {
-					log.Error("Failed reading TurtleCoind log file line by line: ", err)
+					log.Error("Failed reading AmityCoind log file line by line: ", err)
 				}
 			}
 			if strings.Contains(line, "Imported block with index") {
-				log.Info("TurtleCoind importing blocks: ", line)
+				log.Info("AmityCoind importing blocks: ", line)
 			}
 			if strings.Contains(line, "Core rpc server started ok") {
-				log.Info("TurtleCoind ready (rpc server started ok).")
+				log.Info("AmityCoind ready (rpc server started ok).")
 				break
 			}
 			if strings.Contains(line, "Node stopped.") {
-				errorMessage := "Error TurtleCoind: 'Node stopped'"
+				errorMessage := "Error AmityCoind: 'Node stopped'"
 				log.Error(errorMessage)
 				return errors.New(errorMessage)
 			}
@@ -440,7 +441,7 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 		return err
 	}
 
-	log.Info("Opening turtle-service and waiting for it to be ready.")
+	log.Info("Opening amity-service and waiting for it to be ready.")
 
 	timesCheckLog := 0
 	timeBetweenChecks := 100 * time.Millisecond
@@ -463,7 +464,7 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 			}
 			if strings.Contains(line, "Wallet loading is finished.") {
 				successLaunchingWalletd = true
-				log.Info("turtle-service ready ('Wallet loading is finished.').")
+				log.Info("amity-service ready ('Wallet loading is finished.').")
 				break
 			}
 			if strings.Contains(line, "Imported block with index") {
@@ -477,7 +478,7 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 						errorMessage = errorMessage + line
 					}
 				} else {
-					errorMessage = "turtle-service stopped with unknown error"
+					errorMessage = "amity-service stopped with unknown error"
 				}
 
 				killWalletd()
@@ -492,10 +493,10 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 	}
 
 	// check rpc connection with walletd
-	_, _, _, _, err = turtlecoinwalletdrpcgo.RequestStatus(rpcPassword)
+	_, _, _, _, err = amitycoinwalletdrpcgo.RequestStatus(rpcPassword)
 	if err != nil {
 		killWalletd()
-		return errors.New("error communicating with turtle-service via rpc")
+		return errors.New("error communicating with amity-service via rpc")
 	}
 
 	WalletdOpenAndRunning = true
@@ -513,14 +514,14 @@ func GracefullyQuitWalletd() {
 
 		if isPlatformWindows {
 			// because syscall.SIGTERM does not work in windows. We have to manually save the wallet, as we kill walletd.
-			turtlecoinwalletdrpcgo.SaveWallet(rpcPassword)
+			amitycoinwalletdrpcgo.SaveWallet(rpcPassword)
 			time.Sleep(3 * time.Second)
 
 			err = cmdWalletd.Process.Kill()
 			if err != nil {
-				log.Error("failed to kill turtle-service: " + err.Error())
+				log.Error("failed to kill amity-service: " + err.Error())
 			} else {
-				log.Info("turtle-service killed without error")
+				log.Info("amity-service killed without error")
 			}
 		} else {
 			_ = cmdWalletd.Process.Signal(syscall.SIGTERM)
@@ -531,14 +532,14 @@ func GracefullyQuitWalletd() {
 			select {
 			case <-time.After(5 * time.Second):
 				if err := cmdWalletd.Process.Kill(); err != nil {
-					log.Warning("failed to kill turtle-service: " + err.Error())
+					log.Warning("failed to kill amity-service: " + err.Error())
 				}
-				log.Info("turtle-service killed as stopping process timed out")
+				log.Info("amity-service killed as stopping process timed out")
 			case err := <-done:
 				if err != nil {
-					log.Warning("turtle-service finished with error: " + err.Error())
+					log.Warning("amity-service finished with error: " + err.Error())
 				}
-				log.Info("turtle-service killed without error")
+				log.Info("amity-service killed without error")
 			}
 		}
 	}
@@ -564,60 +565,60 @@ func killWalletd() {
 			select {
 			case <-time.After(500 * time.Millisecond):
 				if err := cmdWalletd.Process.Kill(); err != nil {
-					log.Warning("failed to kill turtle-service: " + err.Error())
+					log.Warning("failed to kill amity-service: " + err.Error())
 				}
-				log.Info("turtle-service killed as stopping process timed out")
+				log.Info("amity-service killed as stopping process timed out")
 			case err := <-done:
 				if err != nil {
-					log.Warning("turtle-service finished with error: " + err.Error())
+					log.Warning("amity-service finished with error: " + err.Error())
 				}
-				log.Info("turtle-service killed without error")
+				log.Info("amity-service killed without error")
 			}
 		}
 	}
 }
 
-// GracefullyQuitTurtleCoind stops the TurtleCoind daemon
-func GracefullyQuitTurtleCoind() {
+// GracefullyQuitAmityCoind stops the AmityCoind daemon
+func GracefullyQuitAmityCoind() {
 
-	if cmdTurtleCoind != nil {
+	if cmdAmityCoind != nil {
 		var err error
 
 		if isPlatformWindows {
-			// because syscall.SIGTERM does not work in windows. We have to kill TurtleCoind.
+			// because syscall.SIGTERM does not work in windows. We have to kill AmityCoind.
 
-			err = cmdTurtleCoind.Process.Kill()
+			err = cmdAmityCoind.Process.Kill()
 			if err != nil {
-				log.Error("failed to kill TurtleCoind: " + err.Error())
+				log.Error("failed to kill AmityCoind: " + err.Error())
 			} else {
-				log.Info("TurtleCoind killed without error")
+				log.Info("AmityCoind killed without error")
 			}
 		} else {
-			_ = cmdTurtleCoind.Process.Signal(syscall.SIGTERM)
+			_ = cmdAmityCoind.Process.Signal(syscall.SIGTERM)
 			done := make(chan error, 1)
 			go func() {
-				done <- cmdTurtleCoind.Wait()
+				done <- cmdAmityCoind.Wait()
 			}()
 			select {
 			case <-time.After(5 * time.Second):
-				if err := cmdTurtleCoind.Process.Kill(); err != nil {
-					log.Warning("failed to kill TurtleCoind: " + err.Error())
+				if err := cmdAmityCoind.Process.Kill(); err != nil {
+					log.Warning("failed to kill AmityCoind: " + err.Error())
 				}
-				log.Info("TurtleCoind killed as stopping process timed out")
+				log.Info("AmityCoind killed as stopping process timed out")
 			case err := <-done:
 				if err != nil {
-					log.Warning("TurtleCoind finished with error: " + err.Error())
+					log.Warning("AmityCoind finished with error: " + err.Error())
 				}
-				log.Info("TurtleCoind killed without error")
+				log.Info("AmityCoind killed without error")
 			}
 		}
 	}
 
-	cmdTurtleCoind = nil
+	cmdAmityCoind = nil
 }
 
-// CreateWallet calls turtle-service to create a new wallet. If privateViewKey, privateSpendKey and mnemonicSeed are empty strings, a new wallet will be generated. If they are not empty, a wallet will be generated from those keys or from the seed (import)
-// walletFilename is the filename chosen by the user. The created wallet file will be located in the same folder as turtle-service.
+// CreateWallet calls amity-service to create a new wallet. If privateViewKey, privateSpendKey and mnemonicSeed are empty strings, a new wallet will be generated. If they are not empty, a wallet will be generated from those keys or from the seed (import)
+// walletFilename is the filename chosen by the user. The created wallet file will be located in the same folder as amity-service.
 // walletPassword is the password of the new wallet.
 // walletPasswordConfirmation is the repeat of the password for confirmation that the password was correctly entered.
 // privateViewKey is the private view key of the wallet.
@@ -626,7 +627,7 @@ func GracefullyQuitTurtleCoind() {
 func CreateWallet(walletFilename string, walletPassword string, walletPasswordConfirmation string, privateViewKey string, privateSpendKey string, mnemonicSeed string, scanHeight string) (err error) {
 
 	if WalletdOpenAndRunning {
-		return errors.New("turtle-service is already running. It should be stopped before being able to generate a new wallet")
+		return errors.New("amity-service is already running. It should be stopped before being able to generate a new wallet")
 	}
 
 	if strings.Contains(walletFilename, "/") || strings.Contains(walletFilename, " ") || strings.Contains(walletFilename, ":") {
@@ -634,7 +635,7 @@ func CreateWallet(walletFilename string, walletPassword string, walletPasswordCo
 	}
 
 	if isWalletdRunning() {
-		errorMessage := "turtle-service is already running in the background.\nPlease close it via "
+		errorMessage := "amity-service is already running in the background.\nPlease close it via "
 
 		if isPlatformWindows {
 			errorMessage += "the task manager"
@@ -675,7 +676,7 @@ func CreateWallet(walletFilename string, walletPassword string, walletPasswordCo
 			log.Fatal("error finding home directory. Error: ", err)
 		}
 		pathToHomeDir := usr.HomeDir
-		pathToAppLibDir := pathToHomeDir + "/Library/Application Support/TurtleCoin-Nest"
+		pathToAppLibDir := pathToHomeDir + "/Library/Application Support/AmityCoin-Nest"
 
 		pathToLogWalletdCurrentSession = pathToAppLibDir + "/" + pathToLogWalletdCurrentSession
 		pathToLogWalletdAllSessions = pathToAppLibDir + "/" + pathToLogWalletdAllSessions
@@ -767,7 +768,7 @@ func CreateWallet(walletFilename string, walletPassword string, walletPasswordCo
 						errorMessage = errorMessage + line
 					}
 				} else {
-					errorMessage = "turtle-service stopped with unknown error"
+					errorMessage = "amity-service stopped with unknown error"
 				}
 
 				killWalletd()
@@ -797,7 +798,7 @@ func CreateWallet(walletFilename string, walletPassword string, walletPasswordCo
 // RequestConnectionInfo provides the blockchain sync status and the number of connected peers
 func RequestConnectionInfo() (syncing string, walletBlockCount int, knownBlockCount int, localDaemonBlockCount int, peerCount int, err error) {
 
-	walletBlockCount, knownBlockCount, localDaemonBlockCount, peerCount, err = turtlecoinwalletdrpcgo.RequestStatus(rpcPassword)
+	walletBlockCount, knownBlockCount, localDaemonBlockCount, peerCount, err = amitycoinwalletdrpcgo.RequestStatus(rpcPassword)
 	if err != nil {
 		return "", 0, 0, 0, 0, err
 	}
@@ -821,7 +822,7 @@ func RequestConnectionInfo() (syncing string, walletBlockCount int, knownBlockCo
 // RequestFeeinfo provides the additional fee requested by the remote node for each transaction
 func RequestFeeinfo() (nodeFee float64, err error) {
 
-	_, nodeFee, _, err = turtlecoinwalletdrpcgo.GetFeeInfo(rpcPassword)
+	_, nodeFee, _, err = amitycoinwalletdrpcgo.GetFeeInfo(rpcPassword)
 	if err != nil {
 		return 0, err
 	}
@@ -891,14 +892,14 @@ func isWalletdRunning() bool {
 	return false
 }
 
-func isTurtleCoindRunning() bool {
+func isAmityCoindRunning() bool {
 
-	if _, _, err := findProcess(turtlecoindCommandName); err == nil {
+	if _, _, err := findProcess(amitycoindCommandName); err == nil {
 		return true
 	}
 
 	if isPlatformWindows {
-		if _, _, err := findProcess(turtlecoindCommandName + ".exe"); err == nil {
+		if _, _, err := findProcess(amitycoindCommandName + ".exe"); err == nil {
 			return true
 		}
 	}

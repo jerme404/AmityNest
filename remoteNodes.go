@@ -22,14 +22,14 @@ type nodeFeeInfo struct {
 	Amount  float64 `json:"amount"`
 }
 
-const urlTurtleCoinRemoteNodes = "https://raw.githubusercontent.com/turtlecoin/turtlecoin-nodes-json/master/turtlecoin-nodes.json"
+const urlAmityCoinRemoteNodes = "https://raw.githubusercontent.com/calexcore/amitycoin-nodes-json/master/amitycoin-nodes.json"
 const apiPointFee = "/fee"
 const apiPointFee2 = "/feeinfo"
 
 func requestListRemoteNodes() (remoteNodes []node) {
 
 	theNodes := new(nodes)
-	err := getJSONFromHTTPRequest(urlTurtleCoinRemoteNodes, theNodes)
+	err := getJSONFromHTTPRequest(urlAmityCoinRemoteNodes, theNodes)
 
 	if err != nil {
 
