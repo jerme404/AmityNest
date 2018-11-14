@@ -148,7 +148,7 @@ func SendTransaction(transferAddress string, transferAmountString string, transf
 		return "", errors.New("wallet and/or blockchain not fully synced yet")
 	}
 
-	if !strings.HasPrefix(transferAddress, "AMIT") || (len(transferAddress) != 99 && len(transferAddress) != 187) {
+	if !strings.HasPrefix(transferAddress, "AMIT") || (len(transferAddress) != 98 && len(transferAddress) != 186) {
 		return "", errors.New("address is invalid")
 	}
 
