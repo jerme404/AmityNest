@@ -8,15 +8,15 @@ package main
 
 const (
 	versionNest                 = "0.01"
-	urlCryptoCompareTRTL        = "https://min-api.cryptocompare.com/data/price?fsym=TRTL&tsyms=USD"
-	logFileFilename             = "TurtleCoin-Nest.log"
+	urlCryptoCompareAMIT        = "https://min-api.cryptocompare.com/data/price?fsym=TRTL&tsyms=USD"
+	logFileFilename             = "AmityCoin-Nest.log"
 	urlBlockExplorer            = "https://explorer.getamitycoin.org/"
 	dbFilename                  = "settings.db"
 	numberTransactionsToDisplay = 25
 
 	// default remote node
 	defaultRemoteDaemonAddress = "amit.getamitycoin.org/"
-	defaultRemoteDaemonPort    = "21018"
+	defaultRemoteDaemonPort    = "31018"
 	defaultRemoteDaemonName    = "AmityCoin"
 	defaultRemoteDaemonSSL     = false
 )

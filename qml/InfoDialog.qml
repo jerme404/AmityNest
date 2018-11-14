@@ -17,7 +17,7 @@ Dialog {
     standardButtons: StandardButton.Ok
     width: 900
 
-    property var addressDev: "TRTLv3jzutiQwqHL3qFwsu5EVLWesxZr1AFQ4AuMR3SD56n3rkHDkwj79eKwvaiU1nYQWGydKoXM6fXyiiGKsPDnVCNXzNdusxx"
+    property var addressDev: "amitWnmgfgYG4XerZGPLNFd5AM87rUkb3X2q4FcELpPsB4DXtT8YE3mETzAjrYLdDH39pJoCxSUHPU2yqZeY1RsJ1h5DgikVAz"
     property var websiteChat: "http://chat.turtlecoin.lol"
     property var versionNest: ""
     property var newVersionNestAvailable: ""

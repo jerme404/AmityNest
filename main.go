@@ -46,7 +46,7 @@ var (
 	useCheckpoints              = true
 	displayFiatConversion       = false
 	stringBackupKeys            = ""
-	rateUSDAMIT                 float64 // USD value for 1 TRTL < we're not on a market so we dont use this yet
+	rateUSDAMIT                 float64 // USD value for 1 AMIT < we're not on a market so we dont use this yet
 	customRemoteDaemonAddress   = defaultRemoteDaemonAddress
 	customRemoteDaemonPort      = defaultRemoteDaemonPort
 	limitDisplayedTransactions  = true
@@ -223,10 +223,10 @@ func getAndDisplayBalances() {
 
 	walletAvailableBalance, walletLockedBalance, walletTotalBalance, err := walletdmanager.RequestBalance()
 	if err == nil {
-		qmlBridge.DisplayAvailableBalance(humanize.FormatFloat("#,###.##", walletAvailableBalance))
-		qmlBridge.DisplayLockedBalance(humanize.FormatFloat("#,###.##", walletLockedBalance))
+		qmlBridge.DisplayAvailableBalance(humanize.FormatFloat("#,###.####", walletAvailableBalance))
+		qmlBridge.DisplayLockedBalance(humanize.FormatFloat("#,###.####", walletLockedBalance))
 		balanceUSD := walletTotalBalance * rateUSDAMIT
-		qmlBridge.DisplayTotalBalance(humanize.FormatFloat("#,###.##", walletTotalBalance), humanize.FormatFloat("#,###.##", balanceUSD))
+		qmlBridge.DisplayTotalBalance(humanize.FormatFloat("#,###.####", walletTotalBalance), humanize.FormatFloat("#,###.##", balanceUSD))
 	}
 }
 
