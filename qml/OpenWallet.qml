@@ -20,7 +20,7 @@ Rectangle {
     Text {
         id: textOpenWalletDescr
         color: "#ffffff"
-        text: "If you are new to TurtleCoin, choose \"Create a new wallet\"."
+        text: "If you are new to AmityCoin, choose \"Create a new wallet\"."
         anchors.right: parent.right
         anchors.rightMargin: 15
         anchors.left: parent.left
@@ -46,9 +46,9 @@ Rectangle {
 
         ColumnLayout {
             spacing: 10
-           
+
             OldControls.ExclusiveGroup { id: tabPositionGroup }
-            
+
             RowLayout {
                 spacing: 25
 
@@ -133,7 +133,7 @@ Rectangle {
 
                     Connections {
                         target: QmlBridge
-                        
+
                         onAddRemoteNodeToList: {
                             modelListRemoteNodes.append({text: nodeName})
                         }
@@ -476,7 +476,7 @@ Rectangle {
                 id: textInputCreateWalletFilename
                 anchors.fill: parent
                 color: "#cfcfcf"
-                text: "myFirstTRTLWallet"
+                text: "myFirstAMITWallet"
                 rightPadding: 5
                 leftPadding: 5
                 selectionColor: "#eeeeee"
@@ -738,7 +738,7 @@ Rectangle {
                 id: textInputImportWalletFilename
                 anchors.fill: parent
                 color: "#cfcfcf"
-                text: "myTRTLWallet"
+                text: "myAMITWallet"
                 rightPadding: 5
                 leftPadding: 5
                 selectionColor: "#eeeeee"
@@ -1125,7 +1125,7 @@ Rectangle {
             } else {
                 textImportWalletScanHeightDescr.anchors.top = rectangleTextInputImportWalletSeed.bottom
             }
-        } 
+        }
     }
 
     FileDialog {
@@ -1135,7 +1135,7 @@ Rectangle {
         onAccepted: {
             textInputExistingWalletPath.text = dialogChooseWalletFile.fileUrl
         }
-        
+
         function show() {
             dialogChooseWalletFile.open()
         }

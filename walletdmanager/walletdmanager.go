@@ -406,7 +406,7 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 		readerAmityCoindLog := bufio.NewReader(amityCoindCurrentSessionLogFile)
 
 		for {
-			line, err := readerAmiytCoindLog.ReadString('\n')
+			line, err := readerAmityCoindLog.ReadString('\n')
 			if err != nil {
 				if err != io.EOF {
 					log.Error("Failed reading AmityCoind log file line by line: ", err)

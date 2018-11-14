@@ -180,7 +180,7 @@ func connectQMLToGOFunctions() {
 	})
 
 	qmlBridge.ConnectGetTransferAmountUSD(func(amountTRTL string) string {
-		return amountStringUSDToTRTL(amountTRTL)
+		return amountStringUSDToAMIT(amountTRTL)
 	})
 
 	qmlBridge.ConnectClickedButtonBackupWallet(func() {

@@ -7,13 +7,13 @@
 package walletdmanager
 
 const (
-	// DefaultTransferFee is the default fee. It is expressed in TRTL
+	// DefaultTransferFee is the default fee. It is expressed in AMIT
 	DefaultTransferFee float64 = 0.1
 
 	logWalletdCurrentSessionFilename     = "amity-service-session.log"
 	logWalletdAllSessionsFilename        = "amity-service.log"
-	logTurtleCoindCurrentSessionFilename = "AmityCoind-session.log"
-	logTurtleCoindAllSessionsFilename    = "AmityCoind.log"
+	logAmityCoindCurrentSessionFilename = "AmityCoind-session.log"
+	logAmityCoindAllSessionsFilename    = "AmityCoind.log"
 	walletdLogLevel                      = "3" // should be at least 3 as I use some logs messages to confirm creation of wallet
 	walletdCommandName                   = "amity-service"
 	amitycoindCommandName               = "AmityCoind"
