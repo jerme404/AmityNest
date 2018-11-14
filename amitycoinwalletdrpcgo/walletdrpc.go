@@ -51,8 +51,8 @@ func RequestBalance(rpcPassword string) (availableBalance float64, lockedBalance
 		return 0, 0, 0, errors.Wrap(err, "getBalance result is nil")
 	}
 
-	availableBalance = responseMap["result"].(map[string]interface{})["availableBalance"].(float64) / 100
-	lockedBalance = responseMap["result"].(map[string]interface{})["lockedAmount"].(float64) / 100
+	availableBalance = responseMap["result"].(map[string]interface{})["availableBalance"].(float64) / 10000
+	lockedBalance = responseMap["result"].(map[string]interface{})["lockedAmount"].(float64) / 10000
 	totalBalance = availableBalance + lockedBalance
 
 	return availableBalance, lockedBalance, totalBalance, nil
@@ -106,8 +106,8 @@ func RequestListTransactions(blockCount int, firstBlockIndex int, addresses []st
 			transfer.PaymentID = mapTransaction["paymentId"].(string)
 			transfer.TxID = mapTransaction["transactionHash"].(string)
 			transfer.Timestamp = time.Unix(int64(mapTransaction["timestamp"].(float64)), 0)
-			transfer.Amount = mapTransaction["amount"].(float64) / 100
-			transfer.Fee = mapTransaction["fee"].(float64) / 100
+			transfer.Amount = mapTransaction["amount"].(float64) / 10000
+			transfer.Fee = mapTransaction["fee"].(float64) / 10000
 			transfer.Block = int(mapTransaction["blockIndex"].(float64))
 			transfer.Confirmations = blockCount - transfer.Block + 1
 			transfer.IsRecievingTransaction = transfer.Amount >= 0
@@ -141,8 +141,8 @@ func RequestStatus(rpcPassword string) (walletBlockCount int, knownBlockCount in
 // parameters amount and fee are expressed in AMIT, not 0.01 AMIT
 func SendTransaction(addressRecipient string, amount float64, paymentID string, fee float64, rpcPassword string) (transactionHash string, err error) {
 
-	amountInt := uint64(amount * 100) // expressed in hundredth of AMIT
-	feeInt := uint64(fee * 100)       // expressed in hundredth of AMIT
+	amountInt := uint64(amount * 10000) // expressed in hundredth of AMIT
+	feeInt := uint64(fee * 10000)       // expressed in hundredth of AMIT
 
 	args := make(map[string]interface{})
 	args["fee"] = feeInt
@@ -241,7 +241,7 @@ func SaveWallet(rpcPassword string) (err error) {
 // totalOutputCount is the total number of unspent outputs of the specified addresses.
 func EstimateFusion(threshold int, addresses []string, rpcPassword string) (fusionReadyCount int, totalOutputCount int, err error) {
 
-	threshold *= 100 // expressed in hundredth of AMIT
+	threshold *= 10000 // expressed in hundredth of AMIT
 
 	args := make(map[string]interface{})
 	args["threshold"] = threshold
@@ -264,7 +264,7 @@ func EstimateFusion(threshold int, addresses []string, rpcPassword string) (fusi
 // parameters amount and fee are expressed in AMIT, not 0.01 AMIT
 func SendFusionTransaction(threshold int, addresses []string, destinationAddress string, rpcPassword string) (transactionHash string, err error) {
 
-	threshold *= 100 // expressed in hundredth of AMIT
+	threshold *= 10000 // expressed in hundredth of AMIT
 
 	args := make(map[string]interface{})
 	args["threshold"] = threshold
@@ -317,7 +317,7 @@ func GetFeeInfo(rpcPassword string) (address string, fee float64, status string,
 
 	resultAmount := result.(map[string]interface{})["amount"]
 	if resultAmount != nil {
-		fee = resultAmount.(float64) / 100
+		fee = resultAmount.(float64) / 10000
 	} else {
 		fee = 0
 	}

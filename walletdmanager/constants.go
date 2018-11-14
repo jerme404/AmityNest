@@ -8,7 +8,7 @@ package walletdmanager
 
 const (
 	// DefaultTransferFee is the default fee. It is expressed in AMIT
-	DefaultTransferFee float64 = 0.1
+	DefaultTransferFee float64 = 0.01
 
 	logWalletdCurrentSessionFilename     = "amity-service-session.log"
 	logWalletdAllSessionsFilename        = "amity-service.log"
