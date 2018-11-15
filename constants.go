@@ -15,7 +15,7 @@ const (
 	numberTransactionsToDisplay = 25
 
 	// default remote node
-	defaultRemoteDaemonAddress = "amit.getamitycoin.org/"
+	defaultRemoteDaemonAddress = "amit.getamitycoin.org"
 	defaultRemoteDaemonPort    = "31018"
 	defaultRemoteDaemonName    = "AmityCoin"
 	defaultRemoteDaemonSSL     = false
