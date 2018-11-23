@@ -1,4 +1,5 @@
 // Copyright (c) 2018, The TurtleCoin Developers
+// Copyright (c) 2018, The The FRED Project
 //
 // Please see the included LICENSE file for more information.
 //
@@ -24,7 +25,7 @@ ApplicationWindow {
     minimumWidth: windowWidth
     minimumHeight: minWindowHeight
     color: "#333333"
-    title: "TurtleCoin Nest"
+    title: "FRED Nest"
     visible: true
 
     Flickable{

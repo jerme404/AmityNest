@@ -1,4 +1,5 @@
 // Copyright (c) 2018, The TurtleCoin Developers
+// Copyright (c) 2018, The The FRED Project
 //
 // Please see the included LICENSE file for more information.
 //
@@ -20,7 +21,7 @@ Rectangle {
     Text {
         id: textOpenWalletDescr
         color: "#ffffff"
-        text: "If you are new to TurtleCoin, choose \"Create a new wallet\"."
+        text: "If you are new to FRED, choose \"Create a new wallet\"."
         anchors.right: parent.right
         anchors.rightMargin: 15
         anchors.left: parent.left
@@ -46,9 +47,9 @@ Rectangle {
 
         ColumnLayout {
             spacing: 10
-           
+
             OldControls.ExclusiveGroup { id: tabPositionGroup }
-            
+
             RowLayout {
                 spacing: 25
 
@@ -133,7 +134,7 @@ Rectangle {
 
                     Connections {
                         target: QmlBridge
-                        
+
                         onAddRemoteNodeToList: {
                             modelListRemoteNodes.append({text: nodeName})
                         }
@@ -476,7 +477,7 @@ Rectangle {
                 id: textInputCreateWalletFilename
                 anchors.fill: parent
                 color: "#cfcfcf"
-                text: "myFirstTRTLWallet"
+                text: "myFREDWallet"
                 rightPadding: 5
                 leftPadding: 5
                 selectionColor: "#eeeeee"
@@ -738,7 +739,7 @@ Rectangle {
                 id: textInputImportWalletFilename
                 anchors.fill: parent
                 color: "#cfcfcf"
-                text: "myTRTLWallet"
+                text: "myFREDWallet"
                 rightPadding: 5
                 leftPadding: 5
                 selectionColor: "#eeeeee"
@@ -1125,7 +1126,7 @@ Rectangle {
             } else {
                 textImportWalletScanHeightDescr.anchors.top = rectangleTextInputImportWalletSeed.bottom
             }
-        } 
+        }
     }
 
     FileDialog {
@@ -1135,7 +1136,7 @@ Rectangle {
         onAccepted: {
             textInputExistingWalletPath.text = dialogChooseWalletFile.fileUrl
         }
-        
+
         function show() {
             dialogChooseWalletFile.open()
         }

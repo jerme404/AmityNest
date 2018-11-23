@@ -1,4 +1,5 @@
 // Copyright (c) 2018, The TurtleCoin Developers
+// Copyright (c) 2018, The The FRED Project
 //
 // Please see the included LICENSE file for more information.
 //
@@ -100,7 +101,7 @@ Rectangle {
             Text {
                 id: textLockedUnit
                 color: "#cfcfcf"
-                text: "TRTL"
+                text: "FRED"
                 anchors.right: parent.right
                 anchors.rightMargin: 18
                 anchors.bottom: parent.bottom
@@ -114,7 +115,7 @@ Rectangle {
             Text {
                 id: textAvailableUnit
                 color: "#cfcfcf"
-                text: "TRTL"
+                text: "FRED"
                 font.family: "Arial"
                 font.pixelSize: 15
                 anchors.right: textLockedUnit.right
@@ -170,7 +171,7 @@ Rectangle {
             Text {
                 id: textLockedDescr
                 color: "#cfcfcf"
-                text: "Locked/Unconfirmed:"
+                text: "Locked:"
                 anchors.bottom: textLockedUnit.bottom
                 anchors.bottomMargin: 0
                 font.family: "Arial"
@@ -208,7 +209,7 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             font.bold: true
             font.family: "Arial"
-            font.pixelSize: 25
+            font.pixelSize: 20
         }
 
         Text {
@@ -220,16 +221,16 @@ Rectangle {
             anchors.bottomMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
             font.family: "Arial"
-            font.pixelSize: 30
+            font.pixelSize: 24
             font.bold: true
             anchors.horizontalCenterOffset: 0
-            horizontalAlignment: Text.AlignRight
+            horizontalAlignment: Text.AlignLeft
         }
 
         Text {
             id: textBalanceUnit
             color: "#ffffff"
-            text: "TRTL"
+            text: "FRED"
             verticalAlignment: Text.AlignBottom
             anchors.left: textBalanceValue.right
             anchors.leftMargin: 15
@@ -284,7 +285,7 @@ Rectangle {
         Text {
             id: textDescrWalletName
             color: "#858585"
-            text: "wallet: "
+            text: "Wallet: "
             verticalAlignment: Text.AlignBottom
             anchors.left: parent.left
             anchors.leftMargin: 40
@@ -396,7 +397,7 @@ Rectangle {
         Text {
             id: textDescrCopyAddress
             color: "#858585"
-            text: "Copy your address to receive TRTL"
+            text: "Copy your address to receive FRED"
             anchors.verticalCenter: buttonCopy.verticalCenter
             anchors.right: buttonCopy.left
             anchors.rightMargin: 15
@@ -675,7 +676,7 @@ Rectangle {
                 onTextChanged: {
                     buttonSend.enabled = textInputTransferAmount.text != "" && textInputTransferAddress.text != ""
                     /* Disable payment ID input if integrated address */
-                    textInputTransferPaymentID.enabled = textInputTransferAddress.text.length != 187
+                    textInputTransferPaymentID.enabled = textInputTransferAddress.text.length != 189
                 }
             }
         }
@@ -800,7 +801,7 @@ Rectangle {
         Text {
             id: textTransferAmountUnit
             color: "#999999"
-            text: "TRTL"
+            text: "FRED"
             anchors.verticalCenter: rectangleTextInputTransferAmount.verticalCenter
             horizontalAlignment: Text.AlignLeft
             font.pixelSize: 14
@@ -967,7 +968,7 @@ Rectangle {
         Text {
             id: textTransferFeeUnit
             color: "#999999"
-            text: "TRTL"
+            text: "FRED"
             anchors.verticalCenter: rectangleTextInputTransferFee.verticalCenter
             horizontalAlignment: Text.AlignLeft
             font.pixelSize: 14
@@ -1024,7 +1025,7 @@ Rectangle {
         Text {
             id: textNodeFeeUnit
             color: "#999999"
-            text: "TRTL / tr."
+            text: "FRED / tr."
             font.pixelSize: 14
             font.family: "Arial"
             font.bold: true
@@ -1075,7 +1076,7 @@ Rectangle {
                     rectangleTransfer.transferPaymentID = "";
                 }
                 rectangleTransfer.transferFee = textInputTransferFee.text
-                dialogConfirmTransfer.show(rectangleTransfer.transferRecipient, rectangleTransfer.transferAmount + " TRTL + " + rectangleTransfer.transferFee + " (fee) + " + rectangleTransfer.nodeFeeValue + " (node fee)", rectangleTransfer.transferPaymentID);
+                dialogConfirmTransfer.show(rectangleTransfer.transferRecipient, rectangleTransfer.transferAmount + " FRED + " + rectangleTransfer.transferFee + " (fee) + " + rectangleTransfer.nodeFeeValue + " (node fee)", rectangleTransfer.transferPaymentID);
             }
         }
 
@@ -1374,12 +1375,12 @@ Rectangle {
                 height: 80
 
                 function clickedSavedAddress(address, paymentID) {
-                    
+
                     textInputTransferAddress.text = address;
                     textInputTransferAddress.cursorPosition = 0;
                     textInputTransferPaymentID.text = paymentID;
                     textInputTransferPaymentID.cursorPosition = 0;
-                    
+
                     dialogListAddresses.close();
                 }
 
@@ -1452,11 +1453,11 @@ Rectangle {
         target: QmlBridge
 
         onDisplayPrivateKeys: {
-            privateKeysDialog.show(filename, privateViewKey, privateSpendKey, walletAddress);            
+            privateKeysDialog.show(filename, privateViewKey, privateSpendKey, walletAddress);
         }
 
         onDisplaySeed: {
-            seedDialog.show(filename, mnemonicSeed, walletAddress);            
+            seedDialog.show(filename, mnemonicSeed, walletAddress);
         }
 
         onDisplaySyncingInfo: {

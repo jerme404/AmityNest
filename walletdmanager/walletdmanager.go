@@ -1,4 +1,5 @@
 // Copyright (c) 2018, The TurtleCoin Developers
+// Copyright (c) 2018, The FRED Project
 //
 // Please see the included LICENSE file for more information.
 //
@@ -7,7 +8,7 @@
 package walletdmanager
 
 import (
-	"TurtleCoin-Nest/turtlecoinwalletdrpcgo"
+	"FRED-Nest/turtlecoinwalletdrpcgo"
 	"bufio"
 	"io"
 	"math/rand"
@@ -147,7 +148,7 @@ func SendTransaction(transferAddress string, transferAmountString string, transf
 		return "", errors.New("wallet and/or blockchain not fully synced yet")
 	}
 
-	if !strings.HasPrefix(transferAddress, "TRTL") || (len(transferAddress) != 99 && len(transferAddress) != 187) {
+	if !strings.HasPrefix(transferAddress, "fEnrg") || (len(transferAddress) != 101 && len(transferAddress) != 189) {
 		return "", errors.New("address is invalid")
 	}
 
@@ -272,7 +273,7 @@ func SaveWallet() (err error) {
 func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, useCheckpoints bool, daemonAddress string, daemonPort string) (err error) {
 
 	if isWalletdRunning() {
-		errorMessage := "turtle-service is already running in the background.\nPlease close it via "
+		errorMessage := "FRED-walletd is already running in the background.\nPlease close it via "
 
 		if isPlatformWindows {
 			errorMessage += "the task manager"
@@ -329,7 +330,7 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 			log.Fatal("error finding home directory. Error: ", err)
 		}
 		pathToHomeDir := usr.HomeDir
-		pathToAppLibDir := pathToHomeDir + "/Library/Application Support/TurtleCoin-Nest"
+		pathToAppLibDir := pathToHomeDir + "/Library/Application Support/FRED-Nest"
 
 		pathToLogWalletdCurrentSession = pathToAppLibDir + "/" + pathToLogWalletdCurrentSession
 		pathToLogWalletdAllSessions = pathToAppLibDir + "/" + pathToLogWalletdAllSessions
@@ -400,7 +401,7 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 			return err
 		}
 
-		log.Info("Opening TurtleCoind and waiting for it to be ready.")
+		log.Info("Opening FREDdaemon and waiting for it to be ready.")
 
 		readerTurtleCoindLog := bufio.NewReader(turtleCoindCurrentSessionLogFile)
 
@@ -408,18 +409,18 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 			line, err := readerTurtleCoindLog.ReadString('\n')
 			if err != nil {
 				if err != io.EOF {
-					log.Error("Failed reading TurtleCoind log file line by line: ", err)
+					log.Error("Failed reading FREDdaemon log file line by line: ", err)
 				}
 			}
 			if strings.Contains(line, "Imported block with index") {
-				log.Info("TurtleCoind importing blocks: ", line)
+				log.Info("FREDdaemon importing blocks: ", line)
 			}
 			if strings.Contains(line, "Core rpc server started ok") {
-				log.Info("TurtleCoind ready (rpc server started ok).")
+				log.Info("FREDdaemon ready (rpc server started ok).")
 				break
 			}
 			if strings.Contains(line, "Node stopped.") {
-				errorMessage := "Error TurtleCoind: 'Node stopped'"
+				errorMessage := "Error FREDdaemon: 'Node stopped'"
 				log.Error(errorMessage)
 				return errors.New(errorMessage)
 			}
@@ -440,7 +441,7 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 		return err
 	}
 
-	log.Info("Opening turtle-service and waiting for it to be ready.")
+	log.Info("Opening FRED-walletd and waiting for it to be ready.")
 
 	timesCheckLog := 0
 	timeBetweenChecks := 100 * time.Millisecond
@@ -463,7 +464,7 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 			}
 			if strings.Contains(line, "Wallet loading is finished.") {
 				successLaunchingWalletd = true
-				log.Info("turtle-service ready ('Wallet loading is finished.').")
+				log.Info("FRED-walletd ready ('Wallet loading is finished.').")
 				break
 			}
 			if strings.Contains(line, "Imported block with index") {
@@ -495,7 +496,7 @@ func StartWalletd(walletPath string, walletPassword string, useRemoteNode bool, 
 	_, _, _, _, err = turtlecoinwalletdrpcgo.RequestStatus(rpcPassword)
 	if err != nil {
 		killWalletd()
-		return errors.New("error communicating with turtle-service via rpc")
+		return errors.New("error communicating with FRED-walletd via rpc")
 	}
 
 	WalletdOpenAndRunning = true
@@ -518,9 +519,9 @@ func GracefullyQuitWalletd() {
 
 			err = cmdWalletd.Process.Kill()
 			if err != nil {
-				log.Error("failed to kill turtle-service: " + err.Error())
+				log.Error("failed to kill FRED-walletd: " + err.Error())
 			} else {
-				log.Info("turtle-service killed without error")
+				log.Info("FRED-walletd killed without error")
 			}
 		} else {
 			_ = cmdWalletd.Process.Signal(syscall.SIGTERM)
@@ -531,14 +532,14 @@ func GracefullyQuitWalletd() {
 			select {
 			case <-time.After(5 * time.Second):
 				if err := cmdWalletd.Process.Kill(); err != nil {
-					log.Warning("failed to kill turtle-service: " + err.Error())
+					log.Warning("failed to kill FRED-walletd: " + err.Error())
 				}
-				log.Info("turtle-service killed as stopping process timed out")
+				log.Info("FRED-walletd killed as stopping process timed out")
 			case err := <-done:
 				if err != nil {
-					log.Warning("turtle-service finished with error: " + err.Error())
+					log.Warning("FRED-walletd finished with error: " + err.Error())
 				}
-				log.Info("turtle-service killed without error")
+				log.Info("FRED-walletd killed without error")
 			}
 		}
 	}
@@ -564,14 +565,14 @@ func killWalletd() {
 			select {
 			case <-time.After(500 * time.Millisecond):
 				if err := cmdWalletd.Process.Kill(); err != nil {
-					log.Warning("failed to kill turtle-service: " + err.Error())
+					log.Warning("failed to kill FRED-walletd: " + err.Error())
 				}
-				log.Info("turtle-service killed as stopping process timed out")
+				log.Info("FRED-walletd killed as stopping process timed out")
 			case err := <-done:
 				if err != nil {
-					log.Warning("turtle-service finished with error: " + err.Error())
+					log.Warning("FRED-walletd finished with error: " + err.Error())
 				}
-				log.Info("turtle-service killed without error")
+				log.Info("FRED-walletd killed without error")
 			}
 		}
 	}
@@ -588,9 +589,9 @@ func GracefullyQuitTurtleCoind() {
 
 			err = cmdTurtleCoind.Process.Kill()
 			if err != nil {
-				log.Error("failed to kill TurtleCoind: " + err.Error())
+				log.Error("failed to kill FRED-daemon: " + err.Error())
 			} else {
-				log.Info("TurtleCoind killed without error")
+				log.Info("FRED-daemon killed without error")
 			}
 		} else {
 			_ = cmdTurtleCoind.Process.Signal(syscall.SIGTERM)
@@ -601,14 +602,14 @@ func GracefullyQuitTurtleCoind() {
 			select {
 			case <-time.After(5 * time.Second):
 				if err := cmdTurtleCoind.Process.Kill(); err != nil {
-					log.Warning("failed to kill TurtleCoind: " + err.Error())
+					log.Warning("failed to kill FRED-daemon: " + err.Error())
 				}
-				log.Info("TurtleCoind killed as stopping process timed out")
+				log.Info("FRED-daemon killed as stopping process timed out")
 			case err := <-done:
 				if err != nil {
-					log.Warning("TurtleCoind finished with error: " + err.Error())
+					log.Warning("FRED-daemon finished with error: " + err.Error())
 				}
-				log.Info("TurtleCoind killed without error")
+				log.Info("FRED-daemon killed without error")
 			}
 		}
 	}
@@ -626,7 +627,7 @@ func GracefullyQuitTurtleCoind() {
 func CreateWallet(walletFilename string, walletPassword string, walletPasswordConfirmation string, privateViewKey string, privateSpendKey string, mnemonicSeed string, scanHeight string) (err error) {
 
 	if WalletdOpenAndRunning {
-		return errors.New("turtle-service is already running. It should be stopped before being able to generate a new wallet")
+		return errors.New("FRED-walletd is already running. It should be stopped before being able to generate a new wallet")
 	}
 
 	if strings.Contains(walletFilename, "/") || strings.Contains(walletFilename, " ") || strings.Contains(walletFilename, ":") {
@@ -634,7 +635,7 @@ func CreateWallet(walletFilename string, walletPassword string, walletPasswordCo
 	}
 
 	if isWalletdRunning() {
-		errorMessage := "turtle-service is already running in the background.\nPlease close it via "
+		errorMessage := "FRED-walletd is already running in the background.\nPlease close it via "
 
 		if isPlatformWindows {
 			errorMessage += "the task manager"
@@ -675,7 +676,7 @@ func CreateWallet(walletFilename string, walletPassword string, walletPasswordCo
 			log.Fatal("error finding home directory. Error: ", err)
 		}
 		pathToHomeDir := usr.HomeDir
-		pathToAppLibDir := pathToHomeDir + "/Library/Application Support/TurtleCoin-Nest"
+		pathToAppLibDir := pathToHomeDir + "/Library/Application Support/FRED-Nest"
 
 		pathToLogWalletdCurrentSession = pathToAppLibDir + "/" + pathToLogWalletdCurrentSession
 		pathToLogWalletdAllSessions = pathToAppLibDir + "/" + pathToLogWalletdAllSessions
@@ -767,7 +768,7 @@ func CreateWallet(walletFilename string, walletPassword string, walletPasswordCo
 						errorMessage = errorMessage + line
 					}
 				} else {
-					errorMessage = "turtle-service stopped with unknown error"
+					errorMessage = "FRED-walletd stopped with unknown error"
 				}
 
 				killWalletd()

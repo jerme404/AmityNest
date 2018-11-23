@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {
+      "name": "'FRED 1' public node",
+      "url": "pnode.fredcoinpool.com",
+      "port": 32809,
+      "ssl": false
+    },
+    {
+      "name": "'FRED 2' public node",
+      "url": "pnode2.fredcoinpool.com",
+      "port": 32809,
+      "ssl": false
+    }
+  ]
+}
