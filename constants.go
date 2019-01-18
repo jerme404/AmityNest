@@ -6,7 +6,7 @@
 package main
 
 const (
-	versionNest                 = "0.36"
+	versionNest                 = "0.37"
 	urlCryptoCompareTRTL        = "https://min-api.cryptocompare.com/data/price?fsym=TRTL&tsyms=USD"
 	logFileFilename             = "TurtleCoin-Nest.log"
 	urlBlockExplorer            = "https://blocks.turtle.link/"
@@ -14,8 +14,8 @@ const (
 	numberTransactionsToDisplay = 20
 
 	// default remote node
-	defaultRemoteDaemonAddress = "public.turtlenode.io"
+	defaultRemoteDaemonAddress = "public.turtlenode.online"
 	defaultRemoteDaemonPort    = "11898"
-	defaultRemoteDaemonName    = "public.turtlenode.io"
+	defaultRemoteDaemonName    = "public.turtlenode.online"
 	defaultRemoteDaemonSSL     = false
 )
