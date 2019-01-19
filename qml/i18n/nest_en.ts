@@ -168,5 +168,45 @@
         <source>str-address-list-payment-id</source>
         <translation>payment ID:</translation>
     </message>
+    <message>
+        <location filename="../ItemListTransaction.qml" line="31"/>
+        <source>str-tx-list-tr-abbrv</source>
+        <translation>Tr. ID:</translation>
+    </message>
+    <message>
+        <location filename="../ItemListTransaction.qml" line="44"/>
+        <source>str-tx-list-payment-id</source>
+        <translation>Payment ID:</translation>
+    </message>
+    <message>
+        <location filename="../PrivateKeysDialog.qml" line="26"/>
+        <source>str-see-below-keys</source>
+        <translation>See below your public address and your 2 private (secret) keys. The 2 private keys can be used to re-generate your wallet.\nCopy them both and keep them in a safe place.\nIf you lose them and lose your password or wallet file, you will not be able to recover your TRTLs.\nIf anybody has access to those keys, he can steal your TRTLs.</translation>
+    </message>
+    <message>
+        <location filename="../PrivateKeysDialog.qml" line="33"/>
+        <source>str-keys-wallet-file</source>
+        <translation>Wallet file:</translation>
+    </message>
+    <message>
+        <location filename="../PrivateKeysDialog.qml" line="55"/>
+        <source>str-keys-address</source>
+        <translation>Address:</translation>
+    </message>
+    <message>
+        <location filename="../PrivateKeysDialog.qml" line="86"/>
+        <source>str-keys-private-view</source>
+        <translation>Private View Key</translation>
+    </message>
+    <message>
+        <location filename="../PrivateKeysDialog.qml" line="117"/>
+        <source>str-keys-private-spend</source>
+        <translation>Private Spend Key</translation>
+    </message>
+    <message>
+        <location filename="../PrivateKeysDialog.qml" line="148"/>
+        <source>str-keys-copy</source>
+        <translation>Copy to clipboard</translation>
+    </message>
 </context>
 </TS>

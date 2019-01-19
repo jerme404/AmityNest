@@ -23,14 +23,14 @@ Dialog {
 
     Text {
         id: textDescriptionPrivateKeys
-        text: "See below your public address and your 2 private (secret) keys. The 2 private keys can be used to re-generate your wallet.\nCopy them both and keep them in a safe place.\nIf you lose them and lose your password or wallet file, you will not be able to recover your TRTLs.\nIf anybody has access to those keys, he can steal your TRTLs."
+        text: qsTrId("str-see-below-keys")
         font.family: "Arial"
         font.pixelSize: 13
     }
 
     Text {
         id: textDescriptionWalletFilename
-        text: "Wallet file:"
+        text: qsTrId("str-keys-wallet-file")
         anchors.top: textDescriptionPrivateKeys.bottom
         anchors.topMargin: 25
         anchors.left: textDescriptionPrivateKeys.left
@@ -52,7 +52,7 @@ Dialog {
 
     Text {
         id: textDescriptionAddress
-        text: "Address"
+        text: qsTrId("str-keys-address")
         anchors.top: textDescriptionWalletFilename.bottom
         anchors.topMargin: 25
         anchors.left: textDescriptionWalletFilename.left
@@ -83,7 +83,7 @@ Dialog {
 
     Text {
         id: textDescriptionPrivateViewKey
-        text: "Private View Key"
+        text: qsTrId("str-keys-private-view")
         anchors.top: textInputAddress.bottom
         anchors.topMargin: 25
         anchors.left: textInputAddress.left
@@ -114,7 +114,7 @@ Dialog {
 
     Text {
         id: textDescriptionPrivateSpendKey
-        text: "Private Spend Key"
+        text: qsTrId("str-keys-private-spend")
         anchors.top: textInputPrivateViewKey.bottom
         anchors.topMargin: 25
         anchors.left: textInputPrivateViewKey.left
@@ -145,7 +145,7 @@ Dialog {
 
     Button {
         id: buttonCopyKeys
-        text: "Copy to clipboard"
+        text: qsTrId("str-keys-copy")
         anchors.bottom: textInputPrivateSpendKey.bottom
         anchors.bottomMargin: 40
         anchors.left: textInputPrivateSpendKey.right

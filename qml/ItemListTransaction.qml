@@ -24,11 +24,11 @@ Item {
         font.bold: true
         font.pixelSize: 17
     }
-    
+
     Text {
         id: transactionID
         color: "#cfcfcf"
-        text: "Tr. ID: " + transactionIDValue
+        text: qsTrId("str-tx-list-tr-abbrv") + transactionIDValue
         anchors.top: transactionAmount.bottom
         anchors.topMargin: 8
         anchors.left: transactionAmount.left
@@ -37,11 +37,11 @@ Item {
         font.family: "Arial"
         font.pixelSize: 11
     }
-    
+
     Text {
         id: transactionPaymentID
         color: "#cfcfcf"
-        text: "Payment ID: " + transactionPaymentIDValue
+        text: qsTrId("str-tx-list-payment-id") + transactionPaymentIDValue
         anchors.top: transactionID.bottom
         anchors.topMargin: 8
         anchors.left: transactionID.left
@@ -50,7 +50,7 @@ Item {
         font.family: "Arial"
         font.pixelSize: 11
     }
-    
+
     Text {
         id: transactionTime
         color: "#cfcfcf"
@@ -63,7 +63,7 @@ Item {
         font.pixelSize: 12
         font.family: "Arial"
     }
-    
+
     Text {
         id: transactionConfirmations
         color: "#cfcfcf"
