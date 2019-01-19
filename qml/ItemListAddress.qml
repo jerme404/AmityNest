@@ -44,7 +44,7 @@ Item {
         Text {
             id: savedAddressAddressDescr
             color: "#cfcfcf"
-            text: "addr.:"
+            text: qsTrId("str-address-list-abbrv")
             anchors.left: savedAddressName.left
             anchors.leftMargin: 0
             anchors.top: savedAddressName.bottom
@@ -71,7 +71,7 @@ Item {
         Text {
             id: savedAddressPaymentIDDescr
             color: "#cfcfcf"
-            text: "payment ID:"
+            text: qsTrId("str-address-list-payment-id")
             anchors.left: savedAddressAddressDescr.left
             anchors.leftMargin: 0
             anchors.top: savedAddressAddressDescr.bottom

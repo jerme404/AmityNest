@@ -158,5 +158,15 @@
         <source>str-donate-support</source>
         <translation>Donate to support Nest's dev</translation>
     </message>
+    <message>
+        <location filename="../ItemListAddress.qml" line="47"/>
+        <source>str-address-list-abbrv</source>
+        <translation>addr.:</translation>
+    </message>
+    <message>
+        <location filename="../ItemListAddress.qml" line="74"/>
+        <source>str-address-list-payment-id</source>
+        <translation>payment ID:</translation>
+    </message>
 </context>
 </TS>
