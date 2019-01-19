@@ -896,7 +896,7 @@ Rectangle {
         Text {
             id: textImportWalletPrivateViewKeyDescr
             color: "#ffffff"
-            text: "Private view key"
+            text: qsTrId("str-private-view-key")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.pixelSize: 14
@@ -947,7 +947,7 @@ Rectangle {
         Text {
             id: textImportWalletPrivateSpendKeyDescr
             color: "#ffffff"
-            text: "Private spend key"
+            text: qsTrId("str-private-spend-key")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.pixelSize: 14
@@ -998,7 +998,7 @@ Rectangle {
         Text {
             id: textImportWalletScanHeightDescr
             color: "#ffffff"
-            text: "Starting scan height (optional)"
+            text: qsTrId("str-starting-height")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.pixelSize: 14
@@ -1042,7 +1042,7 @@ Rectangle {
         Text {
             id: textImportWalletScanHeightExtraDescr
             color: "#999999"
-            text: "Enter the approximate height (block number) you created your wallet at. Massively speeds up wallet sync. Leave 0 if unsure."
+            text: qsTrId("str-enter-approximate-height")
             anchors.top: rectangleTextInputImportWalletScanHeight.bottom
             anchors.topMargin: 8
             anchors.left: rectangleTextInputImportWalletScanHeight.left
@@ -1055,7 +1055,7 @@ Rectangle {
 
         Button {
             id: buttonImportWallet
-            text: "IMPORT"
+            text: qsTrId("str-import")
             anchors.right: parent.right
             anchors.rightMargin: 60
             anchors.bottom: rectangleTextInputImportWalletScanHeight.bottom
@@ -1152,7 +1152,7 @@ Rectangle {
 
         Text {
             id: textDescriptionConfirmPassword
-            text: "Re-type your new password:"
+            text: qsTrId("str-retype-password")
             font.family: "Arial"
         }
 

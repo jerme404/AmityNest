@@ -108,5 +108,35 @@
         <source>str-seed-words</source>
         <translation>Seed (25 words)</translation>
     </message>
+    <message>
+        <location filename="../OpenWallet.qml" line="899"/>
+        <source>str-private-view-key</source>
+        <translation>Private view key</translation>
+    </message>
+    <message>
+        <location filename="../OpenWallet.qml" line="950"/>
+        <source>str-private-spend-key</source>
+        <translation>Private spend key</translation>
+    </message>
+    <message>
+        <location filename="../OpenWallet.qml" line="1001"/>
+        <source>str-starting-height</source>
+        <translation>Starting scan height (optional)</translation>
+    </message>
+    <message>
+        <location filename="../OpenWallet.qml" line="1045"/>
+        <source>str-enter-approximate-height</source>
+        <translation>Enter the approximate height (block number) you created your wallet at. Massively speeds up wallet sync. Leave 0 if unsure.</translation>
+    </message>
+    <message>
+        <location filename="../OpenWallet.qml" line="1058"/>
+        <source>str-import</source>
+        <translation>IMPORT</translation>
+    </message>
+    <message>
+        <location filename="../OpenWallet.qml" line="1155"/>
+        <source>str-retype-password</source>
+        <translation>Re-type your new password:</translation>
+    </message>
 </context>
 </TS>
