@@ -53,7 +53,7 @@ Dialog {
 
         Text {
             id: textNewVersion
-            text: "New version (v. " + newVersionNestAvailable + ") is available. Download here"
+            text: "v. " + newVersionNestAvailable + " " + qsTrId("str-new-version-available")
             font.family: "Arial"
             font.pixelSize: 13
             font.bold: true
@@ -94,7 +94,7 @@ Dialog {
 
     Text {
         id: textDescriptionHelp
-        text: "Need help?"
+        text: qsTrId("str-need-help")
         font.family: "Arial"
         font.pixelSize: 13
         anchors.top: rectangleNewVersion.bottom
@@ -107,7 +107,7 @@ Dialog {
         anchors.topMargin: 10
         anchors.left: textDescriptionHelp.left
         anchors.leftMargin: 0
-        text: "Ask the community on " + websiteChat
+        text: qsTrId("str-ask-community") + " " + websiteChat
         leftPadding: 5
         font.family: "Arial"
         font.pixelSize: 13
@@ -145,7 +145,7 @@ Dialog {
 
     Text {
         id: textDescriptionDonate
-        text: "Donate to support Nest's dev"
+        text: qsTrId("str-donate-support")
         font.family: "Arial"
         font.pixelSize: 13
         anchors.top: textHelp.bottom

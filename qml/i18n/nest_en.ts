@@ -138,5 +138,25 @@
         <source>str-retype-password</source>
         <translation>Re-type your new password:</translation>
     </message>
+    <message>
+        <location filename="../InfoDialog.qml" line="56"/>
+        <source>str-new-version-available</source>
+        <translation>is available. Download here</translation>
+    </message>
+    <message>
+        <location filename="../InfoDialog.qml" line="97"/>
+        <source>str-need-help</source>
+        <translation>Need help?</translation>
+    </message>
+    <message>
+        <location filename="../InfoDialog.qml" line="110"/>
+        <source>str-ask-community</source>
+        <translation>Ask the community on</translation>
+    </message>
+    <message>
+        <location filename="../InfoDialog.qml" line="148"/>
+        <source>str-donate-support</source>
+        <translation>Donate to support Nest's dev</translation>
+    </message>
 </context>
 </TS>
