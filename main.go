@@ -144,6 +144,16 @@ func main() {
 	app := gui.NewQGuiApplication(len(os.Args), os.Args)
 	app.SetWindowIcon(gui.NewQIcon5("qrc:/qml/images/icon.png"))
 
+    // Load language traslations
+    var translator = core.NewQTranslator(nil)
+    if translator.Load2(core.QLocale_System(), "nest", "_", ":/qml/i18n", ".qm") {
+		log.Info("Successfully loaded system locale")
+	} else {
+		translator.Load2(core.NewQLocale3(core.QLocale__English, core.QLocale__UnitedStates), "nest", "_", ":/qml/i18n", ".qm")
+		log.Info("No translations found for system locale. Using default")
+	}
+    core.QCoreApplication_InstallTranslator(translator)
+
 	quickcontrols2.QQuickStyle_SetStyle("material")
 
 	engine := qml.NewQQmlApplicationEngine(nil)

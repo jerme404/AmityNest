@@ -20,7 +20,7 @@ Rectangle {
     Text {
         id: textOpenWalletDescr
         color: "#ffffff"
-        text: "If you are new to TurtleCoin, choose \"Create a new wallet\"."
+        text: qsTrId("str-new-to-turtlecoin")
         anchors.right: parent.right
         anchors.rightMargin: 15
         anchors.left: parent.left
@@ -46,15 +46,15 @@ Rectangle {
 
         ColumnLayout {
             spacing: 10
-           
+
             OldControls.ExclusiveGroup { id: tabPositionGroup }
-            
+
             RowLayout {
                 spacing: 25
 
                 OldControls.RadioButton {
                     id: radioButtonUseLocal
-                    text: "Local blockchain"
+                    text: qsTrId("str-local-blockchain")
                     exclusiveGroup: tabPositionGroup
                     style: radioButtonStyle
                     onClicked: QmlBridge.choseRemote(false)
@@ -62,7 +62,7 @@ Rectangle {
 
                 OldControls.CheckBox {
                     id: checkBoxCheckpoints
-                    text: "(       checkpoints)"
+                    text: qsTrId("str-checkpoints")
                     checked: true
 
                     style: CheckBoxStyle {
@@ -86,7 +86,7 @@ Rectangle {
 
                 OldControls.RadioButton {
                     id: radioButtonUseRemoteNode
-                    text: "Remote node"
+                    text: qsTrId("str-remote-node")
                     checked: true
                     exclusiveGroup: tabPositionGroup
                     style: radioButtonStyle
@@ -133,7 +133,7 @@ Rectangle {
 
                     Connections {
                         target: QmlBridge
-                        
+
                         onAddRemoteNodeToList: {
                             modelListRemoteNodes.append({text: nodeName})
                         }
@@ -153,7 +153,7 @@ Rectangle {
         Text {
             id: textRemoteNodeDescrFee
             color: "#999999"
-            text: "To encourage running your full node (Local blockchain), many nodes charge a fee per transaction."
+            text: qsTrId("str-encourage-local")
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 0
             anchors.left: parent.left
@@ -247,7 +247,7 @@ Rectangle {
         Text {
             id: textOpenExistingWalletDescr
             color: "#ffffff"
-            text: "Open an existing wallet"
+            text: qsTrId("str-open-existing-wallet")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.bold: true
@@ -262,7 +262,7 @@ Rectangle {
         Text {
             id: textExistingWalletPathDescr
             color: "#ffffff"
-            text: "Path to wallet file"
+            text: qsTrId("str-path-to-wallet")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.pixelSize: 14
@@ -318,7 +318,7 @@ Rectangle {
         Text {
             id: textExistingWalletPasswordDescr
             color: "#ffffff"
-            text: "Password"
+            text: qsTrId("str-password")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.pixelSize: 14
@@ -372,7 +372,7 @@ Rectangle {
 
         Button {
             id: buttonOpenWallet
-            text: "OPEN"
+            text: qsTrId("str-open")
             anchors.right: parent.right
             anchors.rightMargin: 60
             anchors.bottom: parent.bottom
@@ -435,7 +435,7 @@ Rectangle {
         Text {
             id: textCreateWalletDescr
             color: "#ffffff"
-            text: "Create a new wallet"
+            text: qsTrId("str-create-new-wallet")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.bold: true
@@ -450,7 +450,7 @@ Rectangle {
         Text {
             id: textCreateWalletFilenameDescr
             color: "#ffffff"
-            text: "Choose a filename for your new wallet file"
+            text: qsTrId("str-choose-filename")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.pixelSize: 14
@@ -510,7 +510,7 @@ Rectangle {
         Text {
             id: textCreateWalletExtensionDescr
             color: "#999999"
-            text: "Do not include any extension. Avoid spaces."
+            text: qsTrId("str-no-extension-spaces")
             anchors.top: rectangleTextInputCreateWalletFilename.bottom
             anchors.topMargin: 8
             anchors.left: rectangleTextInputCreateWalletFilename.left
@@ -538,7 +538,7 @@ Rectangle {
         Text {
             id: textCreateWalletPasswordDescr
             color: "#ffffff"
-            text: "Choose a strong password"
+            text: qsTrId("str-strong-password")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.pixelSize: 14
@@ -591,7 +591,7 @@ Rectangle {
 
         Button {
             id: buttonCreateWallet
-            text: "CREATE"
+            text: qsTrId("str-create")
             anchors.right: parent.right
             anchors.rightMargin: 60
             anchors.bottom: parent.bottom
@@ -659,7 +659,7 @@ Rectangle {
         Text {
             id: textImportWalletDescr
             color: "#ffffff"
-            text: "Import wallet"
+            text: qsTrId("str-import-wallet")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.bold: true
@@ -674,7 +674,7 @@ Rectangle {
         Text {
             id: textSwitchImportFromSeed
             color: !switchImportFrom.checked ? "#ffffff" : "#cfcfcf"
-            text: "from seed"
+            text: qsTrId("str-from-seed")
             anchors.right: switchImportFrom.left
             anchors.rightMargin: 4
             anchors.verticalCenter: textImportWalletDescr.verticalCenter
@@ -699,7 +699,7 @@ Rectangle {
         Text {
             id: textSwitchImportFromKeys
             color: switchImportFrom.checked ? "#ffffff" : "#cfcfcf"
-            text: "from private keys"
+            text: qsTrId("str-from-private-keys")
             anchors.left: switchImportFrom.right
             anchors.leftMargin: 4
             anchors.verticalCenter: textImportWalletDescr.verticalCenter
@@ -712,7 +712,7 @@ Rectangle {
         Text {
             id: textImportWalletFilenameDescr
             color: "#ffffff"
-            text: "Choose a filename for your new wallet file"
+            text: qsTrId("str-choose-a-filename")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.pixelSize: 14
@@ -772,7 +772,7 @@ Rectangle {
         Text {
             id: textImportWalletExtensionDescr
             color: "#999999"
-            text: "Do not include any extension. Avoid spaces."
+            text: qsTrId("str-no-extension-or-spaces")
             anchors.top: rectangleTextInputImportWalletFilename.bottom
             anchors.topMargin: 8
             anchors.left: rectangleTextInputImportWalletFilename.left
@@ -800,7 +800,7 @@ Rectangle {
         Text {
             id: textImportWalletPasswordDescr
             color: "#ffffff"
-            text: "Choose a strong password"
+            text: qsTrId("str-choose-strong-password")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.pixelSize: 14
@@ -848,7 +848,7 @@ Rectangle {
         Text {
             id: textImportWalletSeedDescr
             color: "#ffffff"
-            text: "Seed (25 words)"
+            text: qsTrId("str-seed-words")
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignBottom
             font.pixelSize: 14
@@ -1125,7 +1125,7 @@ Rectangle {
             } else {
                 textImportWalletScanHeightDescr.anchors.top = rectangleTextInputImportWalletSeed.bottom
             }
-        } 
+        }
     }
 
     FileDialog {
@@ -1135,7 +1135,7 @@ Rectangle {
         onAccepted: {
             textInputExistingWalletPath.text = dialogChooseWalletFile.fileUrl
         }
-        
+
         function show() {
             dialogChooseWalletFile.open()
         }

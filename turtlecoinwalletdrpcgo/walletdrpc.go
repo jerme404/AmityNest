@@ -242,10 +242,10 @@ func SaveWallet(rpcPassword string) (err error) {
 // totalOutputCount is the total number of unspent outputs of the specified addresses.
 func EstimateFusion(threshold int, addresses []string, rpcPassword string) (fusionReadyCount int, totalOutputCount int, err error) {
 
-	threshold *= divisor // expressed in hundredth of TRTL
+	//threshold *= divisor // expressed in hundredth of TRTL
 
 	args := make(map[string]interface{})
-	args["threshold"] = threshold
+	args["threshold"] = int(float64(threshold) * divisor)
 	args["addresses"] = addresses
 	payload := rpcPayloadEstimateFusion(0, rpcPassword, args)
 
@@ -265,10 +265,10 @@ func EstimateFusion(threshold int, addresses []string, rpcPassword string) (fusi
 // parameters amount and fee are expressed in TRTL, not 0.01 TRTL
 func SendFusionTransaction(threshold int, addresses []string, destinationAddress string, rpcPassword string) (transactionHash string, err error) {
 
-	threshold *= divisor // expressed in hundredth of TRTL
+	//threshold *= divisor // expressed in hundredth of TRTL
 
 	args := make(map[string]interface{})
-	args["threshold"] = threshold
+	args["threshold"] = int(float64(threshold) * divisor)
 	args["addresses"] = addresses
 	args["destinationAddress"] = destinationAddress
 
