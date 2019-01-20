@@ -278,5 +278,165 @@
         <source>str-settings-reset-default</source>
         <translation>Reset to default</translation>
     </message>
+    <message>
+        <location filename="../Wallet.qml" line="173"/>
+        <source>str-wallet-locked-unconfirmed</source>
+        <translation>Locked/Unconfirmed:</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="187"/>
+        <source>str-wallet-available</source>
+        <translation>Available:</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="202"/>
+        <source>str-wallet-balance</source>
+        <translation>BALANCE</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="287"/>
+        <source>str-wallet-wallet</source>
+        <translation>wallet:</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="314"/>
+        <source>str-wallet-backup</source>
+        <translation>Backup wallet</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="349"/>
+        <source>str-wallet-not-open</source>
+        <translation>NO WALLET OPEN</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="399"/>
+        <source>str-wallet-copy-address</source>
+        <translation>Copy your address to receive TRTL</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="426"/>
+        <source>str-wallet-previous-transactions</source>
+        <translation>PREVIOUS TRANSACTIONS</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="510"/>
+        <source>str-wallet-show</source>
+        <translation>Show:</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="523"/>
+        <source>str-wallet-last-20</source>
+        <translation>Last 20</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="548"/>
+        <source>str-wallet-all</source>
+        <translation>All</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="560"/>
+        <source>str-wallet-download-history</source>
+        <translation>download history</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="620"/>
+        <source>str-wallet-transfer</source>
+        <translation>TRANSFER</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="634"/>
+        <source>str-wallet-recipient-address</source>
+        <translation>Recipient address (or integrated address)</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="685"/>
+        <source>str-wallet-addresses</source>
+        <translation>addresses</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="719"/>
+        <source>str-wallet-save</source>
+        <translation>save</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="753"/>
+        <source>str-wallet-amount</source>
+        <translation>Amount</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="830"/>
+        <source>str-wallet-full-balance</source>
+        <translation>full balance</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="864"/>
+        <source>str-wallet-payment-id</source>
+        <translation>Payment ID (optional)</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="879"/>
+        <source>str-wallet-warning-pmt-id</source>
+        <translation>(WARNING: include a payment ID if you were asked to by your recipient)</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="925"/>
+        <source>str-wallet-network-fee</source>
+        <translation>Network fee</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="984"/>
+        <source>str-wallet-node-fee</source>
+        <translation>Node fee</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="999"/>
+        <source>str-wallet-fee-node</source>
+        <translation>Connected node charges a fee of:</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="1027"/>
+        <source>str-wallet-trtl-transaction-abbvr</source>
+        <translation>tr.</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="1039"/>
+        <source>str-wallet-send</source>
+        <translation>SEND</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="1116"/>
+        <source>str-wallet-syncing</source>
+        <translation>Syncing...</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="1197"/>
+        <source>str-wallet-confirm-to</source>
+        <translation>To:</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="1217"/>
+        <source>str-wallet-confirm-amount</source>
+        <translation>Amount:</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="1238"/>
+        <source>str-wallet-confirm-payment-id</source>
+        <translation>Payment ID:</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="1288"/>
+        <source>str-wallet-tx-too-big</source>
+        <translation>Transaction size is too big.\nA transaction must be sent from your address to itself for optimizing your wallet (fusion transaction).</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="1293"/>
+        <source>str-wallet-fusion-option</source>
+        <translation>Would you like to send a fusion transaction? (you might have to do it multiple times)</translation>
+    </message>
+    <message>
+        <location filename="../Wallet.qml" line="1319"/>
+        <source>str-wallet-choose-address-name</source>
+        <translation>Choose a name for this address:</translation>
+    </message>
 </context>
 </TS>

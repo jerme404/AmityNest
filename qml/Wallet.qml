@@ -170,7 +170,7 @@ Rectangle {
             Text {
                 id: textLockedDescr
                 color: "#cfcfcf"
-                text: "Locked/Unconfirmed:"
+                text: qsTrId("str-wallet-locked-unconfirmed")
                 anchors.bottom: textLockedUnit.bottom
                 anchors.bottomMargin: 0
                 font.family: "Arial"
@@ -184,7 +184,7 @@ Rectangle {
             Text {
                 id: textAvailableDescr
                 color: "#cfcfcf"
-                text: "Available:"
+                text: qsTrId("str-wallet-available")
                 anchors.bottom: textAvailableUnit.bottom
                 anchors.bottomMargin: 0
                 anchors.left: textLockedDescr.left
@@ -199,7 +199,7 @@ Rectangle {
         Text {
             id: textBalance
             color: "#ffffff"
-            text: "BALANCE"
+            text: qsTrId("str-wallet-balance")
             verticalAlignment: Text.AlignBottom
             anchors.horizontalCenterOffset: 0
             anchors.horizontalCenter: parent.horizontalCenter
@@ -284,7 +284,7 @@ Rectangle {
         Text {
             id: textDescrWalletName
             color: "#858585"
-            text: "wallet: "
+            text: qsTrId("str-wallet-wallet") + " "
             verticalAlignment: Text.AlignBottom
             anchors.left: parent.left
             anchors.leftMargin: 40
@@ -311,7 +311,7 @@ Rectangle {
 
         Button {
             id: buttonBackupKeys
-            text: "Backup wallet"
+            text: qsTrId("str-wallet-backup")
             anchors.verticalCenter: textDescrWalletName.verticalCenter
             anchors.left: textWalletName.right
             anchors.leftMargin: 30
@@ -346,7 +346,7 @@ Rectangle {
         TextInput {
             id: textAddress
             color: "#ffffff"
-            text: "NO WALLET OPEN"
+            text: qsTrId("str-wallet-not-open")
             anchors.left: parent.left
             anchors.leftMargin: 0
             anchors.top: textDescrWalletName.bottom
@@ -396,7 +396,7 @@ Rectangle {
         Text {
             id: textDescrCopyAddress
             color: "#858585"
-            text: "Copy your address to receive TRTL"
+            text: qsTrId("str-wallet-copy-address")
             anchors.verticalCenter: buttonCopy.verticalCenter
             anchors.right: buttonCopy.left
             anchors.rightMargin: 15
@@ -423,7 +423,7 @@ Rectangle {
         Text {
             id: textHistoryTitle
             color: "#ffffff"
-            text: "PREVIOUS TRANSACTIONS"
+            text: qsTrId("str-wallet-previous-transactions")
             anchors.top: parent.top
             anchors.topMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
@@ -507,7 +507,7 @@ Rectangle {
         Text {
             id: textListTransactionLimitedDescr
             color: "#cfcfcf"
-            text: "Show:"
+            text: qsTrId("str-wallet-show")
             anchors.left: rectangleListTransactions.left
             anchors.leftMargin: 5
             anchors.top: rectangleListTransactions.bottom
@@ -520,7 +520,7 @@ Rectangle {
         Text {
             id: textListTransactionLimited
             color: "#cfcfcf"
-            text: "Last 20"
+            text: qsTrId("str-wallet-last-20")
             anchors.right: switchNumberTransactions.left
             anchors.rightMargin: 4
             anchors.verticalCenter: textListTransactionLimitedDescr.verticalCenter
@@ -545,7 +545,7 @@ Rectangle {
         Text {
             id: textListTransactionAll
             color: "#cfcfcf"
-            text: "All"
+            text: qsTrId("str-wallet-all")
             anchors.left: switchNumberTransactions.right
             anchors.leftMargin: 4
             anchors.verticalCenter: textListTransactionLimitedDescr.verticalCenter
@@ -557,7 +557,7 @@ Rectangle {
 
         Button {
             id: buttonExportListTransactions
-            text: "download history"
+            text: qsTrId("str-wallet-download-history")
             anchors.verticalCenter: textListTransactionLimitedDescr.verticalCenter
             anchors.left: textListTransactionAll.right
             anchors.leftMargin: 42
@@ -617,7 +617,7 @@ Rectangle {
         Text {
             id: textTransferTitle
             color: "#ffffff"
-            text: "TRANSFER"
+            text: qsTrId("str-wallet-transfer")
             font.pixelSize: 25
             horizontalAlignment: Text.AlignHCenter
             font.bold: true
@@ -631,7 +631,7 @@ Rectangle {
         Text {
             id: textTransferAddrDescr
             color: "#ffffff"
-            text: "Recipient address (or integrated address)"
+            text: qsTrId("str-wallet-recipient-address")
             anchors.top: textTransferTitle.bottom
             anchors.topMargin: 34
             anchors.left: parent.left
@@ -682,7 +682,7 @@ Rectangle {
 
         Button {
             id: buttonSavedAddress
-            text: "addresses"
+            text: qsTrId("str-wallet-addresses")
             anchors.bottom: rectangleTextInputTransferAddress.verticalCenter
             anchors.bottomMargin: 2
             anchors.right: parent.right
@@ -716,7 +716,7 @@ Rectangle {
 
         Button {
             id: buttonSaveAddress
-            text: "save"
+            text: qsTrId("str-wallet-save")
             anchors.top: rectangleTextInputTransferAddress.verticalCenter
             anchors.topMargin: 2
             anchors.horizontalCenter: buttonSavedAddress.horizontalCenter
@@ -750,7 +750,7 @@ Rectangle {
         Text {
             id: textTransferAmountDescr
             color: "#ffffff"
-            text: "Amount"
+            text: qsTrId("str-wallet-amount")
             anchors.top: rectangleTextInputTransferAddress.bottom
             anchors.topMargin: 13
             anchors.left: textTransferAddrDescr.left
@@ -827,7 +827,7 @@ Rectangle {
 
         Button {
             id: buttonFullBalance
-            text: "full balance"
+            text: qsTrId("str-wallet-full-balance")
             anchors.verticalCenter: rectangleTextInputTransferAmount.verticalCenter
             anchors.right: parent.right
             anchors.rightMargin: 25
@@ -861,7 +861,7 @@ Rectangle {
         Text {
             id: textTransferPaymentIDDescr
             color: "#ffffff"
-            text: "Payment ID (optional)"
+            text: qsTrId("str-wallet-payment-id")
             anchors.top: rectangleTextInputTransferAmount.bottom
             anchors.topMargin: 13
             anchors.left: textTransferAddrDescr.left
@@ -876,7 +876,7 @@ Rectangle {
         Text {
             id: textTransferPaymentIDWarning
             color: "#999999"
-            text: "(WARNING: include a payment ID if you were asked to by your recipient)"
+            text: qsTrId("str-wallet-warning-pmt-id")
             anchors.right: parent.right
             anchors.rightMargin: 5
             anchors.top: textTransferPaymentIDDescr.bottom
@@ -922,7 +922,7 @@ Rectangle {
         Text {
             id: textTransferFeeDescr
             color: "#ffffff"
-            text: "Network fee"
+            text: qsTrId("str-wallet-network-fee")
             anchors.top: rectangleTextInputTransferPaymentID.bottom
             anchors.topMargin: 13
             anchors.left: textTransferAddrDescr.left
@@ -981,7 +981,7 @@ Rectangle {
         Text {
             id: textNodeFeeTitle
             color: "#ffffff"
-            text: "Node fee"
+            text: qsTrId("str-wallet-node-fee")
             anchors.top: textTransferFeeDescr.top
             anchors.topMargin: 0
             anchors.left: textTransferFeeDescr.right
@@ -996,7 +996,7 @@ Rectangle {
         Text {
             id: textNodeFeeDescr
             color: "#999999"
-            text: "The node you connect\nto charges a fee of:"
+            text: qsTrId("str-wallet-fee-node")
             anchors.right: parent.right
             anchors.rightMargin: 5
             anchors.top: textNodeFeeTitle.bottom
@@ -1024,7 +1024,7 @@ Rectangle {
         Text {
             id: textNodeFeeUnit
             color: "#999999"
-            text: "TRTL / tr."
+            text: "TRTL / " + qsTrId("str-wallet-trtl-transaction-abbvr")
             font.pixelSize: 14
             font.family: "Arial"
             font.bold: true
@@ -1036,7 +1036,7 @@ Rectangle {
 
         Button {
             id: buttonSend
-            text: "SEND"
+            text: qsTrId("str-wallet-send")
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 15
@@ -1113,7 +1113,7 @@ Rectangle {
         Text {
             id: textConnectionInfoSync
             color: "#ffffff"
-            text: "Syncing..."
+            text: qsTrId("str-wallet-syncing")
             font.bold: true
             font.pixelSize: 12
             horizontalAlignment: Text.AlignRight
@@ -1194,7 +1194,7 @@ Rectangle {
 
         Text {
             id: textDescriptionConfirmRecipient
-            text: "To:"
+            text: qsTrId("str-wallet-confirm-to")
             font.family: "Arial"
         }
 
@@ -1214,7 +1214,7 @@ Rectangle {
 
         Text {
             id: textDescriptionConfirmAmount
-            text: "Amount:"
+            text: qsTrId("str-wallet-confirm-amount")
             font.family: "Arial"
             anchors.top: textDescriptionConfirmRecipient.bottom
             anchors.topMargin: 12
@@ -1235,7 +1235,7 @@ Rectangle {
 
         Text {
             id: textDescriptionConfirmPaymentID
-            text: "Payment ID:"
+            text: qsTrId("str-wallet-confirm-payment-id")
             font.family: "Arial"
             anchors.top: textDescriptionConfirmAmount.bottom
             anchors.topMargin: 12
@@ -1285,12 +1285,12 @@ Rectangle {
 
         Text {
             id: textDescriptionDialogFusion
-            text: "Transaction size is too big.\nA transaction must be sent from your address to itself for optimizing your wallet (fusion transaction)."
+            text: qsTrId("str-wallet-tx-too-big")
             font.family: "Arial"
         }
 
         Text {
-            text: "Would you like to send a fusion transaction? (you might have to do it multiple times)"
+            text: qsTrId("str-wallet-fusion-option")
             font.family: "Arial"
             font.bold: true
             anchors.top: textDescriptionDialogFusion.bottom
@@ -1316,7 +1316,7 @@ Rectangle {
 
         Text {
             id: textDescriptionNameAddress
-            text: "Choose a name for this address:"
+            text: qsTrId("str-wallet-choose-address-name")
             font.family: "Arial"
         }
 
@@ -1374,12 +1374,12 @@ Rectangle {
                 height: 80
 
                 function clickedSavedAddress(address, paymentID) {
-                    
+
                     textInputTransferAddress.text = address;
                     textInputTransferAddress.cursorPosition = 0;
                     textInputTransferPaymentID.text = paymentID;
                     textInputTransferPaymentID.cursorPosition = 0;
-                    
+
                     dialogListAddresses.close();
                 }
 
@@ -1452,11 +1452,11 @@ Rectangle {
         target: QmlBridge
 
         onDisplayPrivateKeys: {
-            privateKeysDialog.show(filename, privateViewKey, privateSpendKey, walletAddress);            
+            privateKeysDialog.show(filename, privateViewKey, privateSpendKey, walletAddress);
         }
 
         onDisplaySeed: {
-            seedDialog.show(filename, mnemonicSeed, walletAddress);            
+            seedDialog.show(filename, mnemonicSeed, walletAddress);
         }
 
         onDisplaySyncingInfo: {
