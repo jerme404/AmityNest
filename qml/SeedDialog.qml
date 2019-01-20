@@ -22,14 +22,14 @@ Dialog {
 
     Text {
         id: textDescription
-        text: "See below your public address and your backup seed (a sentence of 25 words).\nThe seed can be used to re-generate your wallet. Copy it and keep it in a safe place.\nIf you lose your seed and lose your password or wallet file, you will not be able to recover your TRTLs.\nIf anybody has access to that seed, he can steal your TRTLs."
+        text: qsTrId("str-see-below-seed")
         font.family: "Arial"
         font.pixelSize: 13
     }
 
     Text {
         id: textDescriptionWalletFilename
-        text: "Wallet file:"
+        text: qsTrId("str-seed-wallet-file")
         anchors.top: textDescription.bottom
         anchors.topMargin: 25
         anchors.left: textDescription.left
@@ -51,7 +51,7 @@ Dialog {
 
     Text {
         id: textDescriptionAddress
-        text: "Address"
+        text: qsTrId("str-seed-address")
         anchors.top: textDescriptionWalletFilename.bottom
         anchors.topMargin: 25
         anchors.left: textDescriptionWalletFilename.left
@@ -76,7 +76,7 @@ Dialog {
 
     Text {
         id: textDescriptionSeed
-        text: "Seed"
+        text: qsTrId("str-seed-seed")
         anchors.top: textAddress.bottom
         anchors.topMargin: 25
         anchors.left: textAddress.left
@@ -103,7 +103,7 @@ Dialog {
 
     Button {
         id: buttonCopy
-        text: "Copy to clipboard"
+        text: qsTrId("str-seed-copy")
         anchors.top: textSeed.top
         anchors.topMargin: -15
         anchors.left: textSeed.right

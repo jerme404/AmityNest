@@ -55,7 +55,7 @@ Rectangle {
     Text {
         id: textSettings
         color: "#ffffff"
-        text: "SETTINGS"
+        text: qsTrId("str-settings")
         anchors.horizontalCenterOffset: 0
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
@@ -68,7 +68,7 @@ Rectangle {
 
     OldControls.CheckBox {
         id: checkBoxUSD
-        text: "Display values also in USD"
+        text: qsTrId("str-settings-display-usd")
         checked: false
         anchors.top: parent.top
         anchors.topMargin: 180
@@ -93,7 +93,7 @@ Rectangle {
     Text {
         id: textSettingsUSDDescr
         color: "#ffffff"
-        text: "(Exchange rate from cryptocompare.com.)\n(Consider cautiously as current volume and liquidity are extremely low.)"
+        text: qsTrId("str-settings-exchange-rate")
         anchors.verticalCenterOffset: 0
         anchors.verticalCenter: checkBoxUSD.verticalCenter
         anchors.left: checkBoxUSD.right
@@ -106,7 +106,7 @@ Rectangle {
     Text {
         id: textSettingsRemoteNodeDescr
         color: "#ffffff"
-        text: "Custom remote node:"
+        text: qsTrId("str-settings-custom-remote")
         anchors.top: checkBoxUSD.bottom
         anchors.topMargin: 80
         anchors.left: checkBoxUSD.left
@@ -119,7 +119,7 @@ Rectangle {
     Text {
         id: textSettingsRemoteNodeComment
         color: "#ffffff"
-        text: "(Select \"Custom\" at the bottom of the remote nodes list.)"
+        text: qsTrId("str-settings-select-custom")
         anchors.top: textSettingsRemoteNodeDescr.bottom
         anchors.topMargin: 10
         anchors.left: textSettingsRemoteNodeDescr.left
@@ -132,7 +132,7 @@ Rectangle {
     Text {
         id: textSettingsRemoteNodeAddressDescr
         color: "#ffffff"
-        text: "address:"
+        text: qsTrId("str-settings-remote-address")
         anchors.verticalCenterOffset: 0
         anchors.verticalCenter: textSettingsRemoteNodeDescr.verticalCenter
         anchors.left: textSettingsRemoteNodeDescr.right
@@ -175,7 +175,7 @@ Rectangle {
     Text {
         id: textSettingsRemoteNodePortDescr
         color: "#ffffff"
-        text: "port:"
+        text: qsTrId("str-settings-remote-port")
         anchors.verticalCenterOffset: 0
         anchors.verticalCenter: textSettingsRemoteNodeDescr.verticalCenter
         anchors.left: rectangleTextInputSettingsRemoteNodeAddress.right
@@ -216,7 +216,7 @@ Rectangle {
 
     Button {
         id: buttonSaveDaemonAddress
-        text: "Save"
+        text: qsTrId("str-settings-save")
         anchors.verticalCenterOffset: 0
         anchors.verticalCenter: textSettingsRemoteNodeDescr.verticalCenter
         anchors.right: buttonResetDaemonAddress.left
@@ -251,7 +251,7 @@ Rectangle {
 
     Button {
         id: buttonResetDaemonAddress
-        text: "Reset to default"
+        text: qsTrId("str-settings-reset-default")
         anchors.verticalCenterOffset: 0
         anchors.verticalCenter: textSettingsRemoteNodeDescr.verticalCenter
         anchors.right: parent.right

@@ -208,5 +208,75 @@
         <source>str-keys-copy</source>
         <translation>Copy to clipboard</translation>
     </message>
+    <message>
+        <location filename="../SeedDialog.qml" line="25"/>
+        <source>str-see-below-seed</source>
+        <translation>See below your public address and your backup seed (a sentence of 25 words).\nThe seed can be used to re-generate your wallet. Copy it and keep it in a safe place.\nIf you lose your seed and lose your password or wallet file, you will not be able to recover your TRTLs.\nIf anybody has access to that seed, he can steal your TRTLs.</translation>
+    </message>
+    <message>
+        <location filename="../SeedDialog.qml" line="32"/>
+        <source>str-seed-wallet-file</source>
+        <translation>Wallet file:</translation>
+    </message>
+    <message>
+        <location filename="../SeedDialog.qml" line="54"/>
+        <source>str-seed-address</source>
+        <translation>Address</translation>
+    </message>
+    <message>
+        <location filename="../SeedDialog.qml" line="79"/>
+        <source>str-seed-seed</source>
+        <translation>Seed</translation>
+    </message>
+    <message>
+        <location filename="../SeedDialog.qml" line="106"/>
+        <source>str-seed-copy</source>
+        <translation>Copy to clipboard</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="58"/>
+        <source>str-settings</source>
+        <translation>SETTINGS</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="71"/>
+        <source>str-settings-display-usd</source>
+        <translation>Display values also in USD</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="96"/>
+        <source>str-settings-exchange-rate</source>
+        <translation>(Exchange rate from cryptocompare.com.)\n(Consider cautiously as current volume and liquidity are extremely low.)</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="109"/>
+        <source>str-settings-custom-remote</source>
+        <translation>Custom remote node:</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="122"/>
+        <source>str-settings-select-custom</source>
+        <translation>(Select "Custom" at the bottom of the remote nodes list.)</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="135"/>
+        <source>str-settings-remote-address</source>
+        <translation>address:</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="178"/>
+        <source>str-settings-remote-port</source>
+        <translation>port:</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="219"/>
+        <source>str-settings-save</source>
+        <translation>Save</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="254"/>
+        <source>str-settings-reset-default</source>
+        <translation>Reset to default</translation>
+    </message>
 </context>
 </TS>
