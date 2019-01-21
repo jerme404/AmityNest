@@ -181,7 +181,7 @@
     <message>
         <location filename="../PrivateKeysDialog.qml" line="26"/>
         <source>str-see-below-keys</source>
-        <translation>See below your public address and your 2 private (secret) keys. The 2 private keys can be used to re-generate your wallet.\nCopy them both and keep them in a safe place.\nIf you lose them and lose your password or wallet file, you will not be able to recover your TRTLs.\nIf anybody has access to those keys, he can steal your TRTLs.</translation>
+        <translation>See below your public address and your 2 private (secret) keys. The 2 private keys can be used to re-generate your wallet. Copy them both and keep them in a safe place. If you lose them and lose your password or wallet file, you will not be able to recover your TRTLs. If anybody has access to those keys, he can steal your TRTLs.</translation>
     </message>
     <message>
         <location filename="../PrivateKeysDialog.qml" line="33"/>
@@ -211,7 +211,7 @@
     <message>
         <location filename="../SeedDialog.qml" line="25"/>
         <source>str-see-below-seed</source>
-        <translation>See below your public address and your backup seed (a sentence of 25 words).\nThe seed can be used to re-generate your wallet. Copy it and keep it in a safe place.\nIf you lose your seed and lose your password or wallet file, you will not be able to recover your TRTLs.\nIf anybody has access to that seed, he can steal your TRTLs.</translation>
+        <translation>See below your public address and your backup seed (a sentence of 25 words). The seed can be used to re-generate your wallet. Copy it and keep it in a safe place. If you lose your seed and lose your password or wallet file, you will not be able to recover your TRTLs. If anybody has access to that seed, he can steal your TRTLs.</translation>
     </message>
     <message>
         <location filename="../SeedDialog.qml" line="32"/>
@@ -246,7 +246,12 @@
     <message>
         <location filename="../Settings.qml" line="96"/>
         <source>str-settings-exchange-rate</source>
-        <translation>(Exchange rate from cryptocompare.com.)\n(Consider cautiously as current volume and liquidity are extremely low.)</translation>
+        <translation>(Exchange rate from cryptocompare.com.)</translation>
+    </message>
+    <message>
+        <location filename="../Settings.qml" line="96"/>
+        <source>str-settings-consider-cautiously</source>
+        <translation>(Consider cautiously as current volume and liquidity are extremely low.)</translation>
     </message>
     <message>
         <location filename="../Settings.qml" line="109"/>
@@ -426,7 +431,7 @@
     <message>
         <location filename="../Wallet.qml" line="1288"/>
         <source>str-wallet-tx-too-big</source>
-        <translation>Transaction size is too big.\nA transaction must be sent from your address to itself for optimizing your wallet (fusion transaction).</translation>
+        <translation>Transaction size is too big. A transaction must be sent from your address to itself for optimizing your wallet (fusion transaction).</translation>
     </message>
     <message>
         <location filename="../Wallet.qml" line="1293"/>

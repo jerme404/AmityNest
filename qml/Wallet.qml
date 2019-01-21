@@ -1286,6 +1286,7 @@ Rectangle {
         Text {
             id: textDescriptionDialogFusion
             text: qsTrId("str-wallet-tx-too-big")
+            wrapMode: wrap
             font.family: "Arial"
         }
 

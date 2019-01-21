@@ -93,12 +93,13 @@ Rectangle {
     Text {
         id: textSettingsUSDDescr
         color: "#ffffff"
-        text: qsTrId("str-settings-exchange-rate")
+        text: qsTrId("str-settings-exchange-rate") + "\n" + qsTrId("str-settings-consider-cautiously")
         anchors.verticalCenterOffset: 0
         anchors.verticalCenter: checkBoxUSD.verticalCenter
         anchors.left: checkBoxUSD.right
         anchors.leftMargin: 23
         horizontalAlignment: Text.AlignLeft
+        wrapMode: wrap
         font.family: "Arial"
         font.pixelSize: 14
     }

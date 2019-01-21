@@ -24,6 +24,7 @@ Dialog {
     Text {
         id: textDescriptionPrivateKeys
         text: qsTrId("str-see-below-keys")
+        wrapMode: wrap
         font.family: "Arial"
         font.pixelSize: 13
     }

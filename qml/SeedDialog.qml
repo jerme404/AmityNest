@@ -23,6 +23,8 @@ Dialog {
     Text {
         id: textDescription
         text: qsTrId("str-see-below-seed")
+        width: 900
+        wrapMode: wrap
         font.family: "Arial"
         font.pixelSize: 13
     }
