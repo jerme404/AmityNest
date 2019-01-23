@@ -146,12 +146,19 @@ func main() {
 
     // Load language traslations
     var translator = core.NewQTranslator(nil)
+    // Auto detect OS language
     if translator.Load2(core.QLocale_System(), "nest", "_", ":/qml/i18n", ".qm") {
 		log.Info("Successfully loaded system locale")
 	} else {
+        // Use en-US as default.
 		translator.Load2(core.NewQLocale3(core.QLocale__English, core.QLocale__UnitedStates), "nest", "_", ":/qml/i18n", ".qm")
 		log.Info("No translations found for system locale. Using default")
 	}
+
+    // Test a different language with these lines.
+    //translator.Load2(core.NewQLocale3(core.QLocale__Chinese, core.QLocale__China), "nest", "_", ":/qml/i18n", ".qm")
+    //log.Info("No translations found for system locale. Using default")
+    
     core.QCoreApplication_InstallTranslator(translator)
 
 	quickcontrols2.QQuickStyle_SetStyle("material")
